@@ -10891,9 +10891,40 @@
           "holder_growth"
         ]
       }
+    },
+    {
+      "ts": "2026-11-25T01:32:23-08:00",
+      "kind": "FILTERED",
+      "token": "Draw",
+      "mint": "CSdE46x6HBCfQjpVCFgDZ639dRhfVgH8PxMZXc7FVTZg",
+      "reason": "universe: liquidity $13,713 < $40,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261125T013218"
+    },
+    {
+      "ts": "2026-11-25T01:32:29-08:00",
+      "kind": "FILTERED",
+      "token": "HELIORA",
+      "mint": "BZYmaJ6C1YksxKvcviNeddaeBdX4UdDcaQoqy1EQuu2Z",
+      "reason": "RUG FAIL: dev wallet 22.44% \u2265 5%; top-10 holders 37.7% \u2265 35%; LP unlocked: only 0.0% burned/locked",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Analyst",
+      "run_id": "20261125T013218",
+      "extra": {
+        "signals": [
+          "holder_growth"
+        ]
+      }
     }
   ],
-  "nightLogCount": 769,
+  "nightLogCount": 771,
   "stats": {
     "since": "2026-11-24T18:00:00-08:00",
     "trades": 3,
@@ -10920,21 +10951,21 @@
   "walletSnap": {
     "address": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
     "sol": 0.426292,
-    "sol_usd": 67.61,
-    "sol_value_usd": 28.82,
+    "sol_usd": 67.54,
+    "sol_value_usd": 28.79,
     "token_value_usd": 0.0,
     "equity_sol": 0.426292,
-    "equity_usd": 28.82,
+    "equity_usd": 28.79,
     "source": "cli --sol",
     "solscan": "https://solscan.io/account/56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq"
   },
   "orders": [],
   "lastScanCandidates": [
     {
-      "token": "HELIORA",
-      "mint": "BZYmaJ6C1YksxKvcviNeddaeBdX4UdDcaQoqy1EQuu2Z",
-      "liq_usd": 172601.06,
-      "vol_m5": 620789.06,
+      "token": "BASKET",
+      "mint": "Gs7MYTzyrKFktBQyiXriRcyFC4gxsR8C7W9E64Fatyp",
+      "liq_usd": 263355.01,
+      "vol_m5": 588987.49,
       "signals": {
         "volume_spike": false,
         "buy_pressure": false,
@@ -10948,10 +10979,10 @@
       ]
     },
     {
-      "token": "BASKET",
-      "mint": "Gs7MYTzyrKFktBQyiXriRcyFC4gxsR8C7W9E64Fatyp",
-      "liq_usd": 259542.14,
-      "vol_m5": 525838.06,
+      "token": "HELIORA",
+      "mint": "BZYmaJ6C1YksxKvcviNeddaeBdX4UdDcaQoqy1EQuu2Z",
+      "liq_usd": 123659.21,
+      "vol_m5": 518761.79,
       "signals": {
         "volume_spike": false,
         "buy_pressure": false,
@@ -10961,35 +10992,20 @@
       },
       "rug": "FAIL",
       "rug_fails": [
+        "dev wallet 22.44% \u2265 5%",
+        "top-10 holders 37.7% \u2265 35%",
         "LP unlocked: only 0.0% burned/locked"
       ]
     },
     {
       "token": "BossJensen",
       "mint": "AbLxqXJ5ZxLvNuz8WFRGvN8s39PAoD5mm6LrXZcCQP2t",
-      "liq_usd": 187460.65,
-      "vol_m5": 339383.32,
+      "liq_usd": 188999.5,
+      "vol_m5": 353980.37,
       "signals": {
         "volume_spike": false,
         "buy_pressure": false,
         "holder_growth": true,
-        "smart_money": false,
-        "kol_buy": false
-      },
-      "rug": "FAIL",
-      "rug_fails": [
-        "LP unlocked: only 0.0% burned/locked"
-      ]
-    },
-    {
-      "token": "Koinu",
-      "mint": "7r1WL2msfE2VgsU5vFfzubmip9co2aGdW46pArgvh63R",
-      "liq_usd": 42575.76,
-      "vol_m5": 263394.47,
-      "signals": {
-        "volume_spike": false,
-        "buy_pressure": false,
-        "holder_growth": false,
         "smart_money": false,
         "kol_buy": false
       },
@@ -11001,8 +11017,8 @@
     {
       "token": "JaoJiu",
       "mint": "3znsVKBg8GKYsweiRUjb1JFWhn72GpJUNb2etVxstg3W",
-      "liq_usd": 150188.78,
-      "vol_m5": 493366.04,
+      "liq_usd": 151949.23,
+      "vol_m5": 399815.9,
       "signals": {
         "volume_spike": false,
         "buy_pressure": false,
@@ -11016,7 +11032,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-11-25T01:28:54-08:00",
+  "generatedAt": "2026-11-25T01:32:31-08:00",
   "tz": "America/Los_Angeles",
   "wallet": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
   "walletSolHint": 0.426291833,
@@ -13088,6 +13104,24 @@
       "token_value_usd": 0.0,
       "equity_sol": 0.426292,
       "equity_usd": 28.82
+    },
+    {
+      "ts": "2026-11-25T01:32:17-08:00",
+      "sol": 0.426292,
+      "sol_usd": 67.54,
+      "token_value_sol": 0.0,
+      "token_value_usd": 0.0,
+      "equity_sol": 0.426292,
+      "equity_usd": 28.79
+    },
+    {
+      "ts": "2026-11-25T01:32:18-08:00",
+      "sol": 0.426292,
+      "sol_usd": 67.54,
+      "token_value_sol": 0.0,
+      "token_value_usd": 0.0,
+      "equity_sol": 0.426292,
+      "equity_usd": 28.79
     }
   ],
   "tokenAccounts": {
@@ -13145,13 +13179,31 @@
     }
   ],
   "lastDeskRun": {
-    "ts": "2026-11-25T01:28:52-08:00",
+    "ts": "2026-11-25T01:32:29-08:00",
     "command": "scan",
-    "scan_id": "20261125T012838",
+    "scan_id": "20261125T013218",
     "tokensChecked": 65,
     "openPositions": 0,
     "pipeline": [],
     "rejections": [
+      {
+        "agent": "analyst",
+        "mint": "BZYmaJ6C1YksxKvcviNeddaeBdX4UdDcaQoqy1EQuu2Z",
+        "symbol": "HELIORA",
+        "reasons": [
+          "RUG FAIL: dev wallet 22.44% \u2265 5%; top-10 holders 37.7% \u2265 35%; LP unlocked: only 0.0% burned/locked"
+        ],
+        "ts": "2026-11-25T01:32:29-08:00"
+      },
+      {
+        "agent": "launch_radar",
+        "mint": "CSdE46x6HBCfQjpVCFgDZ639dRhfVgH8PxMZXc7FVTZg",
+        "symbol": "Draw",
+        "reasons": [
+          "universe: liquidity $13,713 < $40,000"
+        ],
+        "ts": "2026-11-25T01:32:23-08:00"
+      },
       {
         "agent": "analyst",
         "mint": "3znsVKBg8GKYsweiRUjb1JFWhn72GpJUNb2etVxstg3W",
@@ -13358,24 +13410,6 @@
           "universe: liquidity $8,392 < $40,000"
         ],
         "ts": "2026-11-25T01:22:23-08:00"
-      },
-      {
-        "agent": "launch_radar",
-        "mint": "3jKeZm66cTBjfUKXgqL5mS1xuGWzVyYWjjC6GbMJKYst",
-        "symbol": "Clover",
-        "reasons": [
-          "universe: liquidity $16,591 < $40,000"
-        ],
-        "ts": "2026-11-25T01:22:23-08:00"
-      },
-      {
-        "agent": "launch_radar",
-        "mint": "FE4DVZtFpbP9YhAP8fw1Mqa6ppQDozb4VJc1kdpqdzeG",
-        "symbol": "Koinu",
-        "reasons": [
-          "universe: liquidity $6 < $40,000"
-        ],
-        "ts": "2026-11-25T01:22:23-08:00"
       }
     ],
     "lastScan": {
@@ -13397,54 +13431,54 @@
       "name": "Launch Radar",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "119 pools seen, 65 fresh mints, 6 passed universe, 58 filtered",
+      "summary": "120 pools seen, 65 fresh mints, 4 passed universe, 60 filtered",
       "role": "SCANNER \u2014 fresh pairs \u22646h (pump.fun / PumpSwap / Raydium / Meteora), liq \u2265$40k, 5m vol \u2265$25k",
-      "updated": "2026-11-25T01:28:52-08:00"
+      "updated": "2026-11-25T01:32:29-08:00"
     },
     {
       "id": "whale_match",
       "name": "Whale Match",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "40 smart + 80 KOL wallets (kolscan); 196 new txs parsed (0 failed); 0 smart-money flags, 0 KOL flags",
+      "summary": "40 smart + 80 KOL wallets (kolscan); 109 new txs parsed (0 failed); 0 smart-money flags, 0 KOL flags",
       "role": "SCANNER \u2014 3+ of 40 smart wallets in 10m; KOL wallets that bought",
-      "updated": "2026-11-25T01:28:52-08:00"
+      "updated": "2026-11-25T01:32:29-08:00"
     },
     {
       "id": "sentiment",
       "name": "Sentiment",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "6 checked: 1 volume spikes, 0 with >70% buys",
+      "summary": "4 checked: 0 volume spikes, 0 with >70% buys",
       "role": "SCANNER \u2014 volume spike >5x 1h avg, buy/sell ratio >70%",
-      "updated": "2026-11-25T01:28:52-08:00"
+      "updated": "2026-11-25T01:32:29-08:00"
     },
     {
       "id": "holder_map",
       "name": "Holder Map",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "6 checked, 5 with \u2265300 holders, 4 holder-growth flags",
+      "summary": "4 checked, 4 with \u2265300 holders, 4 holder-growth flags",
       "role": "SCANNER \u2014 \u2265300 holders, holder growth; dev % and top-10 % for Rug Check",
-      "updated": "2026-11-25T01:28:52-08:00"
+      "updated": "2026-11-25T01:32:29-08:00"
     },
     {
       "id": "lp_auditor",
       "name": "LP Auditor",
       "spec_role": "RUG CHECK",
       "state": "ok",
-      "summary": "5 audited, 0 passed mint/freeze/LP",
+      "summary": "4 audited, 0 passed mint/freeze/LP",
       "role": "RUG CHECK \u2014 no open mint, no freeze authority, LP burned or locked 30d+; watches for LP pulls",
-      "updated": "2026-11-25T01:28:52-08:00"
+      "updated": "2026-11-25T01:32:29-08:00"
     },
     {
       "id": "analyst",
       "name": "Analyst",
       "spec_role": "RUG CHECK",
       "state": "ok",
-      "summary": "5 reviewed, 0 rug PASS, 0 eligible to enter",
+      "summary": "4 reviewed, 0 rug PASS, 0 eligible to enter",
       "role": "RUG CHECK \u2014 dev <5%, top-10 <35%, no bundle, LP ok, Jupiter sell sim; \u22652 signals; no chasing",
-      "updated": "2026-11-25T01:28:52-08:00"
+      "updated": "2026-11-25T01:32:29-08:00"
     },
     {
       "id": "risk",
@@ -13453,7 +13487,7 @@
       "state": "ok",
       "summary": "equity 0.4263 SOL, peak 0.4320, drawdown -1.3%; 0 open / 2 free slot(s); loss streak 1",
       "role": "SIZER \u2014 20\u201325% of equity by signal strength, max 2 open, \u221250% after 2 losses, \u221230% drawdown pause",
-      "updated": "2026-11-25T01:28:52-08:00"
+      "updated": "2026-11-25T01:32:29-08:00"
     },
     {
       "id": "executor",
@@ -13462,7 +13496,7 @@
       "state": "idle",
       "summary": "no entries this run",
       "role": "EXECUTOR \u2014 2.5% max slippage, entries split in 2 parts",
-      "updated": "2026-11-25T01:28:52-08:00"
+      "updated": "2026-11-25T01:32:29-08:00"
     },
     {
       "id": "profit_taker",
@@ -13471,16 +13505,16 @@
       "state": "idle",
       "summary": "watching 0 open position(s), no exit triggered",
       "role": "EXECUTOR exits \u2014 40% at 2x, 36% at 4x, runner on 25% trail; \u221212% stop; 25m time stop; dev-sell / LP-pull exit",
-      "updated": "2026-11-25T01:28:37-08:00"
+      "updated": "2026-11-25T01:32:17-08:00"
     },
     {
       "id": "journal",
       "name": "Journal",
       "spec_role": "LOGGER + EQUITY",
       "state": "ok",
-      "summary": "769 night-log lines since 18:00 PT; equity point 0.4263 SOL logged",
+      "summary": "771 night-log lines since 18:00 PT; equity point 0.4263 SOL logged",
       "role": "LOGGER + EQUITY \u2014 night log + equity curve",
-      "updated": "2026-11-25T01:28:52-08:00"
+      "updated": "2026-11-25T01:32:29-08:00"
     }
   ],
   "rules": {
