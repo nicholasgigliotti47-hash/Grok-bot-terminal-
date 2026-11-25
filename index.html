@@ -43,10 +43,16 @@
     }
     .title { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--white); }
     .title small { display: block; color: var(--dim); font-size: 10px; letter-spacing: .12em; margin-top: 2px; font-weight: normal; }
+    .livewrap {
+      margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 2px;
+    }
     .livepill {
-      margin-left: auto; display: flex; align-items: center; gap: 6px;
+      display: flex; align-items: center; gap: 6px;
       border: 1px solid var(--green); color: var(--green); padding: 3px 8px; font-size: 11px; letter-spacing: .14em;
     }
+    .livepill.stale { border-color: var(--yellow); color: var(--yellow); }
+    .livepill.down { border-color: var(--red); color: var(--red); }
+    .updated { color: var(--dim); font-size: 10px; letter-spacing: .04em; }
     .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
     .dot.blue { background: var(--blue); box-shadow: 0 0 8px var(--blue); }
     .dot.yellow { background: var(--yellow); box-shadow: 0 0 8px var(--yellow); }
@@ -138,7 +144,10 @@
     <header>
       <div class="logo" aria-hidden="true"></div>
       <div class="title">Grok Bot Terminal <small>10 agents — overnight spec</small></div>
-      <div class="livepill"><span class="dot pulse"></span> LIVE</div>
+      <div class="livewrap">
+        <div class="livepill" id="livePill"><span class="dot pulse" id="liveDot"></span> <span id="liveLabel">LIVE</span></div>
+        <div class="updated" id="updatedAgo">last updated —</div>
+      </div>
     </header>
 
     <div class="balance">
@@ -1189,7 +1198,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-11-24T18:33:26-08:00",
+  "generatedAt": "2026-11-24T18:35:09-08:00",
   "tz": "America/Los_Angeles",
   "wallet": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
   "walletSolHint": 0.426291833,
@@ -2212,6 +2221,10 @@
       "https://solana.publicnode.com",
       "https://api.mainnet-beta.solana.com"
     ];
+    var DATA_URL = "data.json";
+    var LIVE_MS = 12000;
+    var DESK_MS = 15000;
+    var HISTORY_MS = 60000;
     var DEX = "https://api.dexscreener.com";
     var GECKO = "https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd";
     var WSOL = "So11111111111111111111111111111111111111112";
@@ -2237,7 +2250,11 @@
       equityLive: [],
       selected: null,
       err: "",
-      lastHistoryAt: 0
+      lastHistoryAt: 0,
+      lastLiveOkAt: 0,
+      lastDeskOkAt: Date.now(),
+      lastDeskGeneratedAt: BAKED.generatedAt || "",
+      fetchingDesk: false
     };
 
     (BAKED.knownTrades || []).forEach(function (t) {
@@ -2259,6 +2276,80 @@
     }
 
     function $(id) { return document.getElementById(id); }
+
+    function applyDeskData(payload) {
+      if (!payload || typeof payload !== "object") return false;
+      if (!payload.wallet && !payload.generatedAt) return false;
+      if (payload.generatedAt && payload.generatedAt === state.lastDeskGeneratedAt) {
+        state.lastDeskOkAt = Date.now();
+        return false;
+      }
+      BAKED = payload;
+      if (BAKED.wallet) WALLET = BAKED.wallet;
+      state.lastDeskGeneratedAt = BAKED.generatedAt || state.lastDeskGeneratedAt;
+      state.lastDeskOkAt = Date.now();
+      Object.assign(state.tokenAccounts, BAKED.tokenAccounts || {});
+      (BAKED.knownTrades || []).forEach(function (t) {
+        if (t.tx && alreadyHasTx(t.tx)) return;
+        state.trades.push(normalizeTrade(t, true));
+      });
+      return true;
+    }
+
+    async function refreshDesk() {
+      if (state.fetchingDesk) return false;
+      state.fetchingDesk = true;
+      try {
+        var ctrl = new AbortController();
+        var to = setTimeout(function () { ctrl.abort(); }, 12000);
+        var res = await fetch(DATA_URL + "?t=" + Date.now(), { cache: "no-store", signal: ctrl.signal });
+        clearTimeout(to);
+        if (!res.ok) throw new Error("data.json HTTP " + res.status);
+        var payload = await res.json();
+        applyDeskData(payload);
+        return true;
+      } catch (e) {
+        // Keep the last good bake. A missing or stale data.json is not fatal.
+        return false;
+      } finally {
+        state.fetchingDesk = false;
+      }
+    }
+
+    function ageLabel(ts) {
+      if (!ts) return "last updated —";
+      var s = Math.max(0, Math.round((Date.now() - ts) / 1000));
+      if (s < 5) return "last updated just now";
+      if (s < 60) return "last updated " + s + "s ago";
+      var m = Math.floor(s / 60);
+      if (m === 1) return "last updated 1m ago";
+      if (m < 60) return "last updated " + m + "m ago";
+      var h = Math.floor(m / 60);
+      return "last updated " + h + "h ago";
+    }
+
+    function renderFreshness() {
+      var ts = Math.max(state.lastLiveOkAt || 0, state.lastDeskOkAt || 0);
+      var el = $("updatedAgo");
+      if (el) el.textContent = ageLabel(ts);
+      var pill = $("livePill");
+      var label = $("liveLabel");
+      var age = ts ? Date.now() - ts : Infinity;
+      if (!pill) return;
+      pill.classList.remove("stale", "down");
+      if (!state.lastLiveOkAt && age > 20000) {
+        pill.classList.add("down");
+        if (label) label.textContent = "STALE";
+      } else if (age > 90000) {
+        pill.classList.add("down");
+        if (label) label.textContent = "STALE";
+      } else if (age > 30000) {
+        pill.classList.add("stale");
+        if (label) label.textContent = "LIVE";
+      } else if (label) {
+        label.textContent = "LIVE";
+      }
+    }
 
     function fmtUsd(n, digits) {
       if (n === null || n === undefined || !isFinite(n)) return "n/a";
@@ -2666,7 +2757,10 @@
         if (r.mint && r.mint !== "desk") bits.push('<span class="info">' + esc(r.mint) + "</span>");
         return bits.join("  ");
       });
-      $("nightlog").innerHTML = (lines.length ? lines.join("\n") : '<span class="info">no night-log lines yet</span>') + "\n";
+      var nl = $("nightlog");
+      var keep = nl ? nl.scrollTop : 0;
+      nl.innerHTML = (lines.length ? lines.join("\n") : '<span class="info">no night-log lines yet</span>') + "\n";
+      nl.scrollTop = keep;
     }
 
     function rejectionFor(sym, mint) {
@@ -2903,8 +2997,9 @@
       $("source").textContent = "DEXSCREENER";
       $("foot").innerHTML =
         "Wallet <a href=\"" + esc(BAKED.solscanWallet) + "\" target=\"_blank\" rel=\"noopener\">" + esc(WALLET) + "</a>. " +
-        "Numbers here are either live public fetches or labeled as baked from the last desk run. " +
-        "This page never sends a transaction. Generated " + esc(BAKED.generatedAt) + " America/Los_Angeles. " +
+        "Wallet SOL, USD price, and open-position P/L update live in this tab every ~12s. " +
+        "Trades, W/L, positions, agents and the night log refresh from data.json about every 15s after each desk publish. " +
+        "This page never sends a transaction. Desk snapshot " + esc(BAKED.generatedAt) + " America/Los_Angeles. " +
         "Tokens checked is from the last full desk scan, not this browser tick. " +
         (state.err ? " · <span class='err'>" + esc(state.err) + "</span>" : "");
     }
@@ -2923,18 +3018,26 @@
       renderLog();
       renderScore();
       renderNightLog();
+      renderFreshness();
     }
 
     async function tick(fullHistory) {
-      state.err = "";
+      var liveErrs = [];
       try {
         await Promise.all([
-          refreshSol().catch(function (e) { state.err = "rpc " + e.message; }),
-          refreshSolPrice().catch(function (e) { state.err = "price " + e.message; }),
+          refreshSol().then(function () {
+            if (state.sol != null) state.lastLiveOkAt = Date.now();
+          }).catch(function (e) { liveErrs.push("rpc " + e.message); }),
+          refreshSolPrice().then(function () {
+            if (state.solUsd != null) state.lastLiveOkAt = Date.now();
+          }).catch(function (e) { liveErrs.push("price " + e.message); }),
           refreshRadar().catch(function () {})
         ]);
         try { await refreshTokenAccounts(); } catch (e) {}
-        try { await refreshPrices(); } catch (e) {}
+        try {
+          await refreshPrices();
+          if (Object.keys(state.prices).length) state.lastLiveOkAt = Date.now();
+        } catch (e) {}
         if (fullHistory) {
           try { await refreshHistory(); } catch (e) {}
         }
@@ -2944,16 +3047,26 @@
           if (!last || Date.now() - last.t > 10000) state.equityLive.push({ t: Date.now(), y: eq });
           if (state.equityLive.length > 120) state.equityLive = state.equityLive.slice(-120);
         }
+        // Only surface an error when there is nothing good to show.
+        if (liveErrs.length && state.sol == null && state.solUsd == null) state.err = liveErrs[0];
+        else state.err = "";
       } finally {
         render();
       }
     }
 
     render();
-    setInterval(function () { $("clock").textContent = ptClock(new Date()); }, 1000);
+    setInterval(function () {
+      if ($("clock")) $("clock").textContent = ptClock(new Date());
+      renderFreshness();
+    }, 1000);
     tick(true);
-    setInterval(function () { tick(false); }, 20000);
-    setInterval(function () { tick(true); }, 60000);
+    refreshDesk().then(function (ok) { if (ok) render(); });
+    setInterval(function () { tick(false); }, LIVE_MS);
+    setInterval(function () { tick(true); }, HISTORY_MS);
+    setInterval(function () {
+      refreshDesk().then(function (ok) { if (ok) render(); });
+    }, DESK_MS);
   })();
   </script>
 </body>
