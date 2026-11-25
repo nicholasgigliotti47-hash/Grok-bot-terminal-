@@ -961,8 +961,8 @@
   },
   "session": {
     "start": "2026-11-24T18:00:00-08:00",
-    "sol": 0.426291833,
-    "equity_sol": 0.426292,
+    "sol": 0.4263,
+    "equity_sol": 0.4263,
     "peak_equity_sol": 0.43201277028007545,
     "drawdown_pct": -1.32,
     "paused": false,
@@ -973,12 +973,12 @@
   },
   "walletSnap": {
     "address": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
-    "sol": 0.426292,
-    "sol_usd": 68.55,
-    "sol_value_usd": 29.22,
+    "sol": 0.4263,
+    "sol_usd": 68.43,
+    "sol_value_usd": 29.17,
     "token_value_usd": 0.0,
-    "equity_sol": 0.426292,
-    "equity_usd": 29.22,
+    "equity_sol": 0.4263,
+    "equity_usd": 29.17,
     "source": "cli --sol",
     "solscan": "https://solscan.io/account/56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq"
   },
@@ -1087,10 +1087,10 @@
       ]
     }
   ],
-  "generatedAt": "2026-11-24T18:22:24-08:00",
+  "generatedAt": "2026-11-24T18:24:01-08:00",
   "tz": "America/Los_Angeles",
   "wallet": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
-  "walletSolHint": 0.426291833,
+  "walletSolHint": 0.4263,
   "positions": [],
   "closed": [
     {
@@ -1620,6 +1620,15 @@
       "token_value_usd": 0.0,
       "equity_sol": 0.426292,
       "equity_usd": 29.22
+    },
+    {
+      "ts": "2026-11-24T18:24:01-08:00",
+      "sol": 0.4263,
+      "sol_usd": 68.43,
+      "token_value_sol": 0.0,
+      "token_value_usd": 0.0,
+      "equity_sol": 0.4263,
+      "equity_usd": 29.17
     }
   ],
   "tokenAccounts": {
@@ -1677,9 +1686,9 @@
     }
   ],
   "lastDeskRun": {
-    "ts": "2026-11-24T18:22:20-08:00",
-    "command": "scan",
-    "scan_id": "20261124T182142",
+    "ts": "2026-11-24T18:24:01-08:00",
+    "command": "monitor",
+    "scan_id": "20261124T182401",
     "tokensChecked": 67,
     "openPositions": 0,
     "pipeline": [],
@@ -1984,8 +1993,8 @@
       "spec_role": "SIZER",
       "state": "ok",
       "summary": "equity 0.4263 SOL, peak 0.4320, drawdown -1.3%; 0 open / 2 free slot(s); loss streak 1",
-      "role": "SIZER \u2014 20\u201340% of equity by signal strength, max 2 open, \u221250% after 2 losses, \u221230% drawdown pause",
-      "updated": "2026-11-24T18:22:20-08:00"
+      "role": "SIZER \u2014 20\u201325% of equity by signal strength, max 2 open, \u221250% after 2 losses, \u221230% drawdown pause",
+      "updated": "2026-11-24T18:24:01-08:00"
     },
     {
       "id": "executor",
@@ -2003,16 +2012,16 @@
       "state": "idle",
       "summary": "watching 0 open position(s), no exit triggered",
       "role": "EXECUTOR exits \u2014 40% at 2x, 36% at 4x, runner on 25% trail; \u221212% stop; 25m time stop; dev-sell / LP-pull exit",
-      "updated": "2026-11-24T18:21:40-08:00"
+      "updated": "2026-11-24T18:24:01-08:00"
     },
     {
       "id": "journal",
       "name": "Journal",
       "spec_role": "LOGGER + EQUITY",
       "state": "ok",
-      "summary": "52 night-log lines since 18:00 PT; equity point 0.4263 SOL logged",
+      "summary": "52 night-log lines since 18:00 PT; equity 0.4263 SOL",
       "role": "LOGGER + EQUITY \u2014 night log + equity curve",
-      "updated": "2026-11-24T18:22:20-08:00"
+      "updated": "2026-11-24T18:24:01-08:00"
     }
   ],
   "rules": {
@@ -2037,7 +2046,7 @@
     "no_chase_h1_pct": 300,
     "pullback_pct": 10,
     "min_size_pct": 0.2,
-    "max_size_pct": 0.4,
+    "max_size_pct": 0.25,
     "max_open_positions": 2,
     "sol_reserve": 0.01,
     "min_trade_sol": 0.01,
@@ -2576,7 +2585,7 @@
 
       $("stage-CORE").querySelector(".body").innerHTML =
         '<span class="chip take">JOURNAL</span> <span class="chip">rules live</span>' +
-        '<div class="blocked"><span class="when">20–40% of equity per trade · max 2 open · ½ size after 2 losses · −30% drawdown pause · ≥2 signals + rug PASS · pairs ≤6h, liq ≥$40k, 5m vol ≥$25k, ≥300 holders. Wallet ' +
+        '<div class="blocked"><span class="when">20–25% of equity per trade · max 2 open · ½ size after 2 losses · −30% drawdown pause · ≥2 signals + rug PASS · pairs ≤6h, liq ≥$40k, 5m vol ≥$25k, ≥300 holders. Wallet ' +
         esc(WALLET.slice(0, 4) + "…" + WALLET.slice(-4)) + ".</span></div>";
     }
 
