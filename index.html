@@ -16221,9 +16221,35 @@
       "pnl_pct": null,
       "agent": "Launch Radar",
       "run_id": "20261125T074810"
+    },
+    {
+      "ts": "2026-11-25T07:56:57-08:00",
+      "kind": "FILTERED",
+      "token": "Bonk",
+      "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "reason": "main pair is 34344.9h old (not launched/migrated in last 6h)",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261125T075654"
+    },
+    {
+      "ts": "2026-11-25T07:56:57-08:00",
+      "kind": "FILTERED",
+      "token": "MONEYGO",
+      "mint": "2eLqDEmNY1ENbjA98PVxV77iorCc7q9Ug7WNbxr1fCzA",
+      "reason": "universe: 5m volume $0 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261125T075654"
     }
   ],
-  "nightLogCount": 1157,
+  "nightLogCount": 1159,
   "stats": {
     "since": "2026-11-24T18:00:00-08:00",
     "trades": 3,
@@ -16250,17 +16276,17 @@
   "walletSnap": {
     "address": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
     "sol": 0.426292,
-    "sol_usd": 67.098,
-    "sol_value_usd": 28.6,
+    "sol_usd": 67.77,
+    "sol_value_usd": 28.89,
     "token_value_usd": 0.0,
     "equity_sol": 0.426292,
-    "equity_usd": 28.6,
+    "equity_usd": 28.89,
     "source": "cli --sol",
     "solscan": "https://solscan.io/account/56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq"
   },
   "orders": [],
   "lastScanCandidates": [],
-  "generatedAt": "2026-11-25T07:51:50-08:00",
+  "generatedAt": "2026-11-25T07:57:19-08:00",
   "tz": "America/Los_Angeles",
   "wallet": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
   "walletSolHint": 0.426291833,
@@ -19700,6 +19726,24 @@
       "token_value_usd": 0.0,
       "equity_sol": 0.426292,
       "equity_usd": 28.6
+    },
+    {
+      "ts": "2026-11-25T07:56:52-08:00",
+      "sol": 0.426292,
+      "sol_usd": 67.77,
+      "token_value_sol": 0.0,
+      "token_value_usd": 0.0,
+      "equity_sol": 0.426292,
+      "equity_usd": 28.89
+    },
+    {
+      "ts": "2026-11-25T07:56:54-08:00",
+      "sol": 0.426292,
+      "sol_usd": 67.77,
+      "token_value_sol": 0.0,
+      "token_value_usd": 0.0,
+      "equity_sol": 0.426292,
+      "equity_usd": 28.89
     }
   ],
   "tokenAccounts": {
@@ -19757,13 +19801,31 @@
     }
   ],
   "lastDeskRun": {
-    "ts": "2026-11-25T07:51:48-08:00",
+    "ts": "2026-11-25T07:57:17-08:00",
     "command": "scan",
-    "scan_id": "20261125T075130",
-    "tokensChecked": 75,
+    "scan_id": "20261125T075654",
+    "tokensChecked": 64,
     "openPositions": 0,
     "pipeline": [],
     "rejections": [
+      {
+        "agent": "launch_radar",
+        "mint": "2eLqDEmNY1ENbjA98PVxV77iorCc7q9Ug7WNbxr1fCzA",
+        "symbol": "MONEYGO",
+        "reasons": [
+          "universe: 5m volume $0 < $25,000"
+        ],
+        "ts": "2026-11-25T07:56:57-08:00"
+      },
+      {
+        "agent": "launch_radar",
+        "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+        "symbol": "Bonk",
+        "reasons": [
+          "main pair is 34344.9h old (not launched/migrated in last 6h)"
+        ],
+        "ts": "2026-11-25T07:56:57-08:00"
+      },
       {
         "agent": "launch_radar",
         "mint": "5EmvWDizkpjAXbcfCcVq69w1id8GaLzi4LLwtuSgpump",
@@ -19970,24 +20032,6 @@
           "universe: 5m volume $15,496 < $25,000"
         ],
         "ts": "2026-11-25T06:32:15-08:00"
-      },
-      {
-        "agent": "launch_radar",
-        "mint": "FaWEANo8Kz9B415xv3cocE8q5JgghN7CY8FYG4C5pump",
-        "symbol": "3sat",
-        "reasons": [
-          "universe: liquidity $15,812 < $40,000; 5m volume $19,663 < $25,000"
-        ],
-        "ts": "2026-11-25T06:32:15-08:00"
-      },
-      {
-        "agent": "launch_radar",
-        "mint": "3H2Z4MkicsK4QT7VzjRFt6FuqM5Se25NqmqXiztipirs",
-        "symbol": "NEX Ai",
-        "reasons": [
-          "universe: liquidity $38,621 < $40,000; 5m volume $23,374 < $25,000"
-        ],
-        "ts": "2026-11-25T06:32:15-08:00"
       }
     ],
     "lastScan": {
@@ -20009,18 +20053,18 @@
       "name": "Launch Radar",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "136 pools seen, 75 fresh mints, 0 passed universe, 75 filtered",
+      "summary": "124 pools seen, 64 fresh mints, 0 passed universe, 64 filtered",
       "role": "SCANNER \u2014 fresh pairs \u22646h (pump.fun / PumpSwap / Raydium / Meteora), liq \u2265$40k, 5m vol \u2265$25k",
-      "updated": "2026-11-25T07:51:48-08:00"
+      "updated": "2026-11-25T07:57:17-08:00"
     },
     {
       "id": "whale_match",
       "name": "Whale Match",
       "spec_role": "SCANNER",
       "state": "idle",
-      "summary": "tracking 40 smart + 79 KOL wallets (kolscan); no candidates to match; 59 new txs parsed (0 failed)",
+      "summary": "tracking 40 smart + 79 KOL wallets (kolscan); no candidates to match; 91 new txs parsed (0 failed)",
       "role": "SCANNER \u2014 3+ of 40 smart wallets in 10m; KOL wallets that bought",
-      "updated": "2026-11-25T07:51:48-08:00"
+      "updated": "2026-11-25T07:57:17-08:00"
     },
     {
       "id": "sentiment",
@@ -20029,7 +20073,7 @@
       "state": "ok",
       "summary": "0 checked: 0 volume spikes, 0 with >70% buys",
       "role": "SCANNER \u2014 volume spike >5x 1h avg, buy/sell ratio >70%",
-      "updated": "2026-11-25T07:51:48-08:00"
+      "updated": "2026-11-25T07:57:17-08:00"
     },
     {
       "id": "holder_map",
@@ -20038,7 +20082,7 @@
       "state": "ok",
       "summary": "0 checked, 0 with \u2265300 holders, 0 holder-growth flags",
       "role": "SCANNER \u2014 \u2265300 holders, holder growth; dev % and top-10 % for Rug Check",
-      "updated": "2026-11-25T07:51:48-08:00"
+      "updated": "2026-11-25T07:57:17-08:00"
     },
     {
       "id": "lp_auditor",
@@ -20047,7 +20091,7 @@
       "state": "ok",
       "summary": "0 audited, 0 passed mint/freeze/LP",
       "role": "RUG CHECK \u2014 no open mint, no freeze authority, LP burned or locked 30d+; watches for LP pulls",
-      "updated": "2026-11-25T07:51:48-08:00"
+      "updated": "2026-11-25T07:57:17-08:00"
     },
     {
       "id": "analyst",
@@ -20056,7 +20100,7 @@
       "state": "ok",
       "summary": "0 reviewed, 0 rug PASS, 0 eligible to enter",
       "role": "RUG CHECK \u2014 dev <5%, top-10 <35%, no bundle, LP ok, Jupiter sell sim; \u22652 signals; no chasing",
-      "updated": "2026-11-25T07:51:48-08:00"
+      "updated": "2026-11-25T07:57:17-08:00"
     },
     {
       "id": "risk",
@@ -20065,7 +20109,7 @@
       "state": "ok",
       "summary": "equity 0.4263 SOL, peak 0.4320, drawdown -1.3%; 0 open / 2 free slot(s); loss streak 1",
       "role": "SIZER \u2014 20\u201325% of equity by signal strength, max 2 open, \u221250% after 2 losses, \u221230% drawdown pause",
-      "updated": "2026-11-25T07:51:48-08:00"
+      "updated": "2026-11-25T07:57:17-08:00"
     },
     {
       "id": "executor",
@@ -20074,7 +20118,7 @@
       "state": "idle",
       "summary": "no entries this run",
       "role": "EXECUTOR \u2014 2.5% max slippage, entries split in 2 parts",
-      "updated": "2026-11-25T07:51:48-08:00"
+      "updated": "2026-11-25T07:57:17-08:00"
     },
     {
       "id": "profit_taker",
@@ -20083,16 +20127,16 @@
       "state": "idle",
       "summary": "watching 0 open position(s), no exit triggered",
       "role": "EXECUTOR exits \u2014 40% at 2x, 36% at 4x, runner on 25% trail; \u221212% stop; 25m time stop; dev-sell / LP-pull exit",
-      "updated": "2026-11-25T07:51:28-08:00"
+      "updated": "2026-11-25T07:56:52-08:00"
     },
     {
       "id": "journal",
       "name": "Journal",
       "spec_role": "LOGGER + EQUITY",
       "state": "ok",
-      "summary": "1157 night-log lines since 18:00 PT; equity point 0.4263 SOL logged",
+      "summary": "1159 night-log lines since 18:00 PT; equity point 0.4263 SOL logged",
       "role": "LOGGER + EQUITY \u2014 night log + equity curve",
-      "updated": "2026-11-25T07:51:48-08:00"
+      "updated": "2026-11-25T07:57:17-08:00"
     }
   ],
   "rules": {
