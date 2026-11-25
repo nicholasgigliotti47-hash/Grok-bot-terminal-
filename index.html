@@ -224,19 +224,6 @@
   "version": "overnight-v2",
   "nightLog": [
     {
-      "ts": "2026-11-24T18:59:32-08:00",
-      "kind": "FILTERED",
-      "token": "USOI",
-      "mint": "8BFkzdnann8PHsSogv76PmtkTgA7s8k4VBMJ18Y8YUBf",
-      "reason": "universe: liquidity $28,242 < $40,000; 5m volume $2,655 < $25,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261124T185928"
-    },
-    {
       "ts": "2026-11-24T19:07:19-08:00",
       "kind": "FILTERED",
       "token": "Solmas",
@@ -20923,9 +20910,22 @@
       "extra": {
         "signals": []
       }
+    },
+    {
+      "ts": "2026-11-25T14:36:30-08:00",
+      "kind": "FILTERED",
+      "token": "4chanpump",
+      "mint": "GFmaQAffLD1B4BxJuuQHmqxHqWavaSJGrYFCXQAypump",
+      "reason": "universe: liquidity $13,153 < $40,000; 5m volume $24,992 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261125T143626"
     }
   ],
-  "nightLogCount": 1610,
+  "nightLogCount": 1611,
   "stats": {
     "since": "2026-11-24T18:00:00-08:00",
     "trades": 4,
@@ -20952,7 +20952,7 @@
   "walletSnap": {
     "address": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
     "sol": 0.385144,
-    "sol_usd": 70.43,
+    "sol_usd": 70.44,
     "sol_value_usd": 27.13,
     "token_value_usd": 0.0,
     "equity_sol": 0.385144,
@@ -20965,8 +20965,8 @@
     {
       "token": "NIAN",
       "mint": "7xQpidRScDCNmTe7oTimPmwQ9sYHkbj8no15wpUneGML",
-      "liq_usd": 189462.47,
-      "vol_m5": 179504.57,
+      "liq_usd": 191465.14,
+      "vol_m5": 400518.15,
       "signals": {
         "volume_spike": false,
         "buy_pressure": false,
@@ -20983,8 +20983,8 @@
     {
       "token": "KOOP",
       "mint": "8UUZRSJumyduoYFrdEAmY73m5PgGagrZxcH8nX8TSSLU",
-      "liq_usd": 143964.38,
-      "vol_m5": 459046.79,
+      "liq_usd": 147638.87,
+      "vol_m5": 422182.16,
       "signals": {
         "volume_spike": false,
         "buy_pressure": false,
@@ -20998,7 +20998,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-11-25T14:33:49-08:00",
+  "generatedAt": "2026-11-25T14:36:53-08:00",
   "tz": "America/Los_Angeles",
   "wallet": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
   "walletSolHint": 0.38514445,
@@ -25909,6 +25909,24 @@
       "token_value_usd": 0.0,
       "equity_sol": 0.385144,
       "equity_usd": 27.13
+    },
+    {
+      "ts": "2026-11-25T14:36:24-08:00",
+      "sol": 0.385144,
+      "sol_usd": 70.44,
+      "token_value_sol": 0.0,
+      "token_value_usd": 0.0,
+      "equity_sol": 0.385144,
+      "equity_usd": 27.13
+    },
+    {
+      "ts": "2026-11-25T14:36:26-08:00",
+      "sol": 0.385144,
+      "sol_usd": 70.44,
+      "token_value_sol": 0.0,
+      "token_value_usd": 0.0,
+      "equity_sol": 0.385144,
+      "equity_usd": 27.13
     }
   ],
   "tokenAccounts": {
@@ -25975,13 +25993,22 @@
     }
   ],
   "lastDeskRun": {
-    "ts": "2026-11-25T14:33:47-08:00",
+    "ts": "2026-11-25T14:36:52-08:00",
     "command": "scan",
-    "scan_id": "20261125T143322",
-    "tokensChecked": 49,
+    "scan_id": "20261125T143626",
+    "tokensChecked": 55,
     "openPositions": 0,
     "pipeline": [],
     "rejections": [
+      {
+        "agent": "launch_radar",
+        "mint": "GFmaQAffLD1B4BxJuuQHmqxHqWavaSJGrYFCXQAypump",
+        "symbol": "4chanpump",
+        "reasons": [
+          "universe: liquidity $13,153 < $40,000; 5m volume $24,992 < $25,000"
+        ],
+        "ts": "2026-11-25T14:36:30-08:00"
+      },
       {
         "agent": "analyst",
         "mint": "7xQpidRScDCNmTe7oTimPmwQ9sYHkbj8no15wpUneGML",
@@ -26197,15 +26224,6 @@
           "universe: liquidity $35,678 < $40,000"
         ],
         "ts": "2026-11-25T14:07:36-08:00"
-      },
-      {
-        "agent": "analyst",
-        "mint": "3gmFG4sFDJErDV8pacFrL2uUPXeGJTYLjfRy4hFypump",
-        "symbol": "NORFEATH",
-        "reasons": [
-          "rug PASS but only 0 scanner signal(s) (none); need 2"
-        ],
-        "ts": "2026-11-25T14:01:18-08:00"
       }
     ],
     "lastScan": {
@@ -26227,9 +26245,9 @@
       "name": "Launch Radar",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "112 pools seen, 49 fresh mints, 2 passed universe, 47 filtered",
+      "summary": "118 pools seen, 55 fresh mints, 2 passed universe, 51 filtered",
       "role": "SCANNER \u2014 fresh pairs \u22646h (pump.fun / PumpSwap / Raydium / Meteora), liq \u2265$40k, 5m vol \u2265$25k",
-      "updated": "2026-11-25T14:33:47-08:00"
+      "updated": "2026-11-25T14:36:52-08:00"
     },
     {
       "id": "whale_match",
@@ -26238,7 +26256,7 @@
       "state": "ok",
       "summary": "40 smart + 79 KOL wallets (kolscan); 600 new txs parsed (0 failed); 0 smart-money flags, 0 KOL flags",
       "role": "SCANNER \u2014 3+ of 40 smart wallets in 10m; KOL wallets that bought",
-      "updated": "2026-11-25T14:33:47-08:00"
+      "updated": "2026-11-25T14:36:52-08:00"
     },
     {
       "id": "sentiment",
@@ -26247,7 +26265,7 @@
       "state": "ok",
       "summary": "2 checked: 0 volume spikes, 0 with >70% buys",
       "role": "SCANNER \u2014 volume spike >5x 1h avg, buy/sell ratio >70%",
-      "updated": "2026-11-25T14:33:47-08:00"
+      "updated": "2026-11-25T14:36:52-08:00"
     },
     {
       "id": "holder_map",
@@ -26256,7 +26274,7 @@
       "state": "ok",
       "summary": "2 checked, 2 with \u2265300 holders, 1 holder-growth flags",
       "role": "SCANNER \u2014 \u2265300 holders, holder growth; dev % and top-10 % for Rug Check",
-      "updated": "2026-11-25T14:33:47-08:00"
+      "updated": "2026-11-25T14:36:52-08:00"
     },
     {
       "id": "lp_auditor",
@@ -26265,7 +26283,7 @@
       "state": "ok",
       "summary": "2 audited, 0 passed mint/freeze/LP",
       "role": "RUG CHECK \u2014 no open mint, no freeze authority, LP burned or locked 30d+; watches for LP pulls",
-      "updated": "2026-11-25T14:33:47-08:00"
+      "updated": "2026-11-25T14:36:52-08:00"
     },
     {
       "id": "analyst",
@@ -26274,7 +26292,7 @@
       "state": "ok",
       "summary": "2 reviewed, 0 rug PASS, 0 eligible to enter",
       "role": "RUG CHECK \u2014 dev <5%, top-10 <35%, no bundle, LP ok, Jupiter sell sim; \u22652 signals; no chasing; momentum (buys>sells, 5m vol \u22651.2x avg, no +25%/5m or +150%/1h top)",
-      "updated": "2026-11-25T14:33:47-08:00"
+      "updated": "2026-11-25T14:36:52-08:00"
     },
     {
       "id": "risk",
@@ -26283,7 +26301,7 @@
       "state": "ok",
       "summary": "equity 0.3851 SOL, peak 0.4320, drawdown -10.8%; 0 open / 2 free slot(s); loss streak 2 \u2192 size halved",
       "role": "SIZER \u2014 20\u201325% of equity by signal strength, max 2 open, \u221250% after 2 losses, \u221230% drawdown pause",
-      "updated": "2026-11-25T14:33:47-08:00"
+      "updated": "2026-11-25T14:36:52-08:00"
     },
     {
       "id": "executor",
@@ -26292,7 +26310,7 @@
       "state": "idle",
       "summary": "no entries this run",
       "role": "EXECUTOR \u2014 2.5% max slippage, entries split in 2 parts",
-      "updated": "2026-11-25T14:33:47-08:00"
+      "updated": "2026-11-25T14:36:52-08:00"
     },
     {
       "id": "profit_taker",
@@ -26301,16 +26319,16 @@
       "state": "idle",
       "summary": "watching 0 open position(s), no exit triggered",
       "role": "EXECUTOR exits \u2014 40% at 2x, 36% at 4x, runner on 25% trail; \u221212% stop; 25m time stop; dev-sell / LP-pull exit",
-      "updated": "2026-11-25T14:33:20-08:00"
+      "updated": "2026-11-25T14:36:24-08:00"
     },
     {
       "id": "journal",
       "name": "Journal",
       "spec_role": "LOGGER + EQUITY",
       "state": "ok",
-      "summary": "1610 night-log lines since 18:00 PT; equity point 0.3851 SOL logged",
+      "summary": "1611 night-log lines since 18:00 PT; equity point 0.3851 SOL logged",
       "role": "LOGGER + EQUITY \u2014 night log + equity curve",
-      "updated": "2026-11-25T14:33:47-08:00"
+      "updated": "2026-11-25T14:36:52-08:00"
     }
   ],
   "rules": {
