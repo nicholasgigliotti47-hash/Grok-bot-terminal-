@@ -20980,35 +20980,17 @@
   "walletSnap": {
     "address": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
     "sol": 0.385144,
-    "sol_usd": 70.42,
-    "sol_value_usd": 27.12,
+    "sol_usd": 70.44,
+    "sol_value_usd": 27.13,
     "token_value_usd": 0.0,
     "equity_sol": 0.385144,
-    "equity_usd": 27.12,
+    "equity_usd": 27.13,
     "source": "cli --sol",
     "solscan": "https://solscan.io/account/56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq"
   },
   "orders": [],
-  "lastScanCandidates": [
-    {
-      "token": "PVE",
-      "mint": "BdChRkmTYjeYvjVCjTVXLKKByU4uRquJLDw1HoiTd92",
-      "liq_usd": 114653.63,
-      "vol_m5": 187305.07,
-      "signals": {
-        "volume_spike": false,
-        "buy_pressure": false,
-        "holder_growth": false,
-        "smart_money": false,
-        "kol_buy": false
-      },
-      "rug": "FAIL",
-      "rug_fails": [
-        "LP unlocked: only 0.0% burned/locked"
-      ]
-    }
-  ],
-  "generatedAt": "2026-11-25T15:52:30-08:00",
+  "lastScanCandidates": [],
+  "generatedAt": "2026-11-25T15:59:19-08:00",
   "tz": "America/Los_Angeles",
   "wallet": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
   "walletSolHint": 0.38514445,
@@ -26207,6 +26189,24 @@
       "token_value_usd": 0.0,
       "equity_sol": 0.385144,
       "equity_usd": 27.12
+    },
+    {
+      "ts": "2026-11-25T15:58:54-08:00",
+      "sol": 0.385144,
+      "sol_usd": 70.44,
+      "token_value_sol": 0.0,
+      "token_value_usd": 0.0,
+      "equity_sol": 0.385144,
+      "equity_usd": 27.13
+    },
+    {
+      "ts": "2026-11-25T15:58:56-08:00",
+      "sol": 0.385144,
+      "sol_usd": 70.44,
+      "token_value_sol": 0.0,
+      "token_value_usd": 0.0,
+      "equity_sol": 0.385144,
+      "equity_usd": 27.13
     }
   ],
   "tokenAccounts": {
@@ -26273,9 +26273,9 @@
     }
   ],
   "lastDeskRun": {
-    "ts": "2026-11-25T15:52:29-08:00",
+    "ts": "2026-11-25T15:59:17-08:00",
     "command": "scan",
-    "scan_id": "20261125T155218",
+    "scan_id": "20261125T155856",
     "tokensChecked": 44,
     "openPositions": 0,
     "pipeline": [],
@@ -26525,54 +26525,54 @@
       "name": "Launch Radar",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "111 pools seen, 44 fresh mints, 1 passed universe, 43 filtered",
+      "summary": "111 pools seen, 44 fresh mints, 0 passed universe, 44 filtered",
       "role": "SCANNER \u2014 fresh pairs \u22646h (pump.fun / PumpSwap / Raydium / Meteora), liq \u2265$40k, 5m vol \u2265$25k",
-      "updated": "2026-11-25T15:52:29-08:00"
+      "updated": "2026-11-25T15:59:17-08:00"
     },
     {
       "id": "whale_match",
       "name": "Whale Match",
       "spec_role": "SCANNER",
-      "state": "ok",
-      "summary": "40 smart + 79 KOL wallets (kolscan); 185 new txs parsed (0 failed); 0 smart-money flags, 0 KOL flags",
+      "state": "idle",
+      "summary": "tracking 40 smart + 79 KOL wallets (kolscan); no candidates to match; 361 new txs parsed (0 failed)",
       "role": "SCANNER \u2014 3+ of 40 smart wallets in 10m; KOL wallets that bought",
-      "updated": "2026-11-25T15:52:29-08:00"
+      "updated": "2026-11-25T15:59:17-08:00"
     },
     {
       "id": "sentiment",
       "name": "Sentiment",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "1 checked: 0 volume spikes, 0 with >70% buys",
+      "summary": "0 checked: 0 volume spikes, 0 with >70% buys",
       "role": "SCANNER \u2014 volume spike >5x 1h avg, buy/sell ratio >70%",
-      "updated": "2026-11-25T15:52:29-08:00"
+      "updated": "2026-11-25T15:59:17-08:00"
     },
     {
       "id": "holder_map",
       "name": "Holder Map",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "1 checked, 1 with \u2265300 holders, 0 holder-growth flags",
+      "summary": "0 checked, 0 with \u2265300 holders, 0 holder-growth flags",
       "role": "SCANNER \u2014 \u2265300 holders, holder growth; dev % and top-10 % for Rug Check",
-      "updated": "2026-11-25T15:52:29-08:00"
+      "updated": "2026-11-25T15:59:17-08:00"
     },
     {
       "id": "lp_auditor",
       "name": "LP Auditor",
       "spec_role": "RUG CHECK",
       "state": "ok",
-      "summary": "1 audited, 0 passed mint/freeze/LP",
+      "summary": "0 audited, 0 passed mint/freeze/LP",
       "role": "RUG CHECK \u2014 no open mint, no freeze authority, LP burned or locked 30d+; watches for LP pulls",
-      "updated": "2026-11-25T15:52:29-08:00"
+      "updated": "2026-11-25T15:59:17-08:00"
     },
     {
       "id": "analyst",
       "name": "Analyst",
       "spec_role": "RUG CHECK",
       "state": "ok",
-      "summary": "1 reviewed, 0 rug PASS, 0 eligible to enter",
+      "summary": "0 reviewed, 0 rug PASS, 0 eligible to enter",
       "role": "RUG CHECK \u2014 dev <5%, top-10 <35%, no bundle, LP ok, Jupiter sell sim; \u22652 signals; no chasing; momentum (buys>sells, 5m vol \u22651.2x avg, no +25%/5m or +150%/1h top)",
-      "updated": "2026-11-25T15:52:29-08:00"
+      "updated": "2026-11-25T15:59:17-08:00"
     },
     {
       "id": "risk",
@@ -26581,7 +26581,7 @@
       "state": "ok",
       "summary": "equity 0.3851 SOL, peak 0.4320, drawdown -10.8%; 0 open / 2 free slot(s); loss streak 2 \u2192 size halved",
       "role": "SIZER \u2014 20\u201325% of equity by signal strength, max 2 open, \u221250% after 2 losses, \u221230% drawdown pause",
-      "updated": "2026-11-25T15:52:29-08:00"
+      "updated": "2026-11-25T15:59:17-08:00"
     },
     {
       "id": "executor",
@@ -26590,7 +26590,7 @@
       "state": "idle",
       "summary": "no entries this run",
       "role": "EXECUTOR \u2014 2.5% max slippage, entries split in 2 parts",
-      "updated": "2026-11-25T15:52:29-08:00"
+      "updated": "2026-11-25T15:59:17-08:00"
     },
     {
       "id": "profit_taker",
@@ -26599,7 +26599,7 @@
       "state": "idle",
       "summary": "watching 0 open position(s), no exit triggered",
       "role": "EXECUTOR exits \u2014 40% at 2x, 36% at 4x, runner on 25% trail; \u221212% stop; 25m time stop; dev-sell / LP-pull exit",
-      "updated": "2026-11-25T15:52:17-08:00"
+      "updated": "2026-11-25T15:58:54-08:00"
     },
     {
       "id": "journal",
@@ -26608,7 +26608,7 @@
       "state": "ok",
       "summary": "1633 night-log lines since 18:00 PT; equity point 0.3851 SOL logged",
       "role": "LOGGER + EQUITY \u2014 night log + equity curve",
-      "updated": "2026-11-25T15:52:29-08:00"
+      "updated": "2026-11-25T15:59:17-08:00"
     }
   ],
   "rules": {
