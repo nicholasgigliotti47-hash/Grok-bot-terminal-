@@ -6479,9 +6479,98 @@
       "pnl_pct": null,
       "agent": "Launch Radar",
       "run_id": "20261125T231507"
+    },
+    {
+      "ts": "2026-11-25T23:23:17-08:00",
+      "kind": "FILTERED",
+      "token": "Fug",
+      "mint": "AWyA4N489v8XCKBdawttWdfHp9ik361oqCrw2MzcTa1W",
+      "reason": "universe: liquidity $7 < $40,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261125T232313"
+    },
+    {
+      "ts": "2026-11-25T23:23:17-08:00",
+      "kind": "FILTERED",
+      "token": "SPACEXLIFE",
+      "mint": "E4mGb1dnecnifnyM5xqHb1sPgthJBrbBdKUFcru1oJ2W",
+      "reason": "universe: 5m volume $23,355 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261125T232313"
+    },
+    {
+      "ts": "2026-11-25T23:23:17-08:00",
+      "kind": "FILTERED",
+      "token": "Jensen",
+      "mint": "2Va4JvHjsvKX2pQTYNAbbajP5eoAK2xkdh6Exw2DZ5Th",
+      "reason": "universe: liquidity $33,299 < $40,000; 5m volume $8,981 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261125T232313"
+    },
+    {
+      "ts": "2026-11-25T23:23:38-08:00",
+      "kind": "FILTERED",
+      "token": "Pedro",
+      "mint": "AHsBWDbJR1oYKfNvxhEdZPhVgQVfVDQw1e45TG6fXhUZ",
+      "reason": "RUG FAIL: LP unlocked: only 0.0% burned/locked",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Analyst",
+      "run_id": "20261125T232313",
+      "extra": {
+        "signals": []
+      }
+    },
+    {
+      "ts": "2026-11-25T23:23:38-08:00",
+      "kind": "FILTERED",
+      "token": "PUMPCHAN",
+      "mint": "Fo2HAwr7ZAUM2bSZ7MWSi16e3aWGpbw5MsUDYCttpump",
+      "reason": "RUG FAIL: top-10 holders 35.4% \u2265 35%",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Analyst",
+      "run_id": "20261125T232313",
+      "extra": {
+        "signals": []
+      }
+    },
+    {
+      "ts": "2026-11-25T23:23:38-08:00",
+      "kind": "FILTERED",
+      "token": "Elonmas",
+      "mint": "DkMiNYdYEGY1pBfvmjZhpkmUViKkBChrfhKLzqnF4gM",
+      "reason": "RUG FAIL: LP unlocked: only 0.0% burned/locked",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Analyst",
+      "run_id": "20261125T232313",
+      "extra": {
+        "signals": [
+          "buy_pressure"
+        ]
+      }
     }
   ],
-  "nightLogCount": 450,
+  "nightLogCount": 456,
   "stats": {
     "since": "2026-11-25T18:00:00-08:00",
     "trades": 0,
@@ -6508,25 +6597,76 @@
   "walletSnap": {
     "address": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
     "sol": 0.385144,
-    "sol_usd": 70.76,
-    "sol_value_usd": 27.25,
+    "sol_usd": 70.97,
+    "sol_value_usd": 27.33,
     "token_value_usd": 0.0,
     "equity_sol": 0.385144,
-    "equity_usd": 27.25,
+    "equity_usd": 27.33,
     "source": "cli --sol",
     "solscan": "https://solscan.io/account/56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq"
   },
   "orders": [],
   "lastScanCandidates": [
     {
+      "token": "Pedro",
+      "mint": "AHsBWDbJR1oYKfNvxhEdZPhVgQVfVDQw1e45TG6fXhUZ",
+      "liq_usd": 43522.92,
+      "vol_m5": 133989.59,
+      "signals": {
+        "volume_spike": false,
+        "buy_pressure": false,
+        "holder_growth": false,
+        "smart_money": false,
+        "kol_buy": false
+      },
+      "rug": "FAIL",
+      "rug_fails": [
+        "LP unlocked: only 0.0% burned/locked"
+      ]
+    },
+    {
+      "token": "PUMPCHAN",
+      "mint": "Fo2HAwr7ZAUM2bSZ7MWSi16e3aWGpbw5MsUDYCttpump",
+      "liq_usd": 117854.89,
+      "vol_m5": 79205.22,
+      "signals": {
+        "volume_spike": false,
+        "buy_pressure": false,
+        "holder_growth": false,
+        "smart_money": false,
+        "kol_buy": false
+      },
+      "rug": "FAIL",
+      "rug_fails": [
+        "top-10 holders 35.4% \u2265 35%"
+      ]
+    },
+    {
       "token": "Elonmas",
       "mint": "25WMvnpEqe1t5E3DdT8Fc5CtqycmJV24n2ZTakGfz6ru",
-      "liq_usd": 152112.14,
-      "vol_m5": 379234.41,
+      "liq_usd": 160150.3,
+      "vol_m5": 361697.71,
       "signals": {
         "volume_spike": false,
         "buy_pressure": true,
-        "holder_growth": true,
+        "holder_growth": false,
+        "smart_money": false,
+        "kol_buy": false
+      },
+      "rug": "FAIL",
+      "rug_fails": [
+        "LP unlocked: only 0.0% burned/locked"
+      ]
+    },
+    {
+      "token": "Elonmas",
+      "mint": "DkMiNYdYEGY1pBfvmjZhpkmUViKkBChrfhKLzqnF4gM",
+      "liq_usd": 87881.35,
+      "vol_m5": 32640.08,
+      "signals": {
+        "volume_spike": false,
+        "buy_pressure": true,
+        "holder_growth": false,
         "smart_money": false,
         "kol_buy": false
       },
@@ -6538,10 +6678,10 @@
     {
       "token": "philanthro",
       "mint": "8e3ZphcWCiZDtqS2ZTxDZC3Bh33evT8tYJp2VXE9iKoB",
-      "liq_usd": 117885.05,
-      "vol_m5": 518472.08,
+      "liq_usd": 125039.82,
+      "vol_m5": 505169.98,
       "signals": {
-        "volume_spike": true,
+        "volume_spike": false,
         "buy_pressure": false,
         "holder_growth": true,
         "smart_money": false,
@@ -6549,53 +6689,18 @@
       },
       "rug": "FAIL",
       "rug_fails": [
-        "LP unlocked: only 0.0% burned/locked"
-      ]
-    },
-    {
-      "token": "ELONCOIN",
-      "mint": "CyKTZ2bg1VyUkjyMvABrMgSK3yksM7N2GZd6UY9rbh3U",
-      "liq_usd": 59133.55,
-      "vol_m5": 39888.92,
-      "signals": {
-        "volume_spike": false,
-        "buy_pressure": true,
-        "holder_growth": true,
-        "smart_money": false,
-        "kol_buy": false
-      },
-      "rug": "FAIL",
-      "rug_fails": [
-        "top-10 holders 90.7% \u2265 35%",
         "LP unlocked: only 0.0% burned/locked"
       ]
     },
     {
       "token": "Jensenmas",
       "mint": "8PvmJuzqhxDBLD4JAHwXQE2zaah8tieLupq8GvriLNHy",
-      "liq_usd": 151704.07,
-      "vol_m5": 381226.48,
+      "liq_usd": 158034.27,
+      "vol_m5": 356590.44,
       "signals": {
         "volume_spike": false,
         "buy_pressure": false,
-        "holder_growth": true,
-        "smart_money": false,
-        "kol_buy": false
-      },
-      "rug": "FAIL",
-      "rug_fails": [
-        "LP unlocked: only 0.0% burned/locked"
-      ]
-    },
-    {
-      "token": "Elonmas",
-      "mint": "JRZfFfHmbcdLpV73uGmGz3Qhp8245EVWShT2jEoHrks",
-      "liq_usd": 85071.72,
-      "vol_m5": 223843.61,
-      "signals": {
-        "volume_spike": false,
-        "buy_pressure": false,
-        "holder_growth": true,
+        "holder_growth": false,
         "smart_money": false,
         "kol_buy": false
       },
@@ -6605,7 +6710,7 @@
       ]
     }
   ],
-  "generatedAt": "2026-11-25T23:15:26-08:00",
+  "generatedAt": "2026-11-25T23:23:40-08:00",
   "tz": "America/Los_Angeles",
   "wallet": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
   "walletSolHint": 0.38514445,
@@ -13406,6 +13511,24 @@
       "token_value_usd": 0.0,
       "equity_sol": 0.385144,
       "equity_usd": 27.25
+    },
+    {
+      "ts": "2026-11-25T23:23:12-08:00",
+      "sol": 0.385144,
+      "sol_usd": 70.97,
+      "token_value_sol": 0.0,
+      "token_value_usd": 0.0,
+      "equity_sol": 0.385144,
+      "equity_usd": 27.33
+    },
+    {
+      "ts": "2026-11-25T23:23:13-08:00",
+      "sol": 0.385144,
+      "sol_usd": 70.97,
+      "token_value_sol": 0.0,
+      "token_value_usd": 0.0,
+      "equity_sol": 0.385144,
+      "equity_usd": 27.33
     }
   ],
   "tokenAccounts": {
@@ -13472,13 +13595,67 @@
     }
   ],
   "lastDeskRun": {
-    "ts": "2026-11-25T23:15:24-08:00",
+    "ts": "2026-11-25T23:23:38-08:00",
     "command": "scan",
-    "scan_id": "20261125T231507",
-    "tokensChecked": 69,
+    "scan_id": "20261125T232313",
+    "tokensChecked": 51,
     "openPositions": 0,
     "pipeline": [],
     "rejections": [
+      {
+        "agent": "analyst",
+        "mint": "DkMiNYdYEGY1pBfvmjZhpkmUViKkBChrfhKLzqnF4gM",
+        "symbol": "Elonmas",
+        "reasons": [
+          "RUG FAIL: LP unlocked: only 0.0% burned/locked"
+        ],
+        "ts": "2026-11-25T23:23:38-08:00"
+      },
+      {
+        "agent": "analyst",
+        "mint": "Fo2HAwr7ZAUM2bSZ7MWSi16e3aWGpbw5MsUDYCttpump",
+        "symbol": "PUMPCHAN",
+        "reasons": [
+          "RUG FAIL: top-10 holders 35.4% \u2265 35%"
+        ],
+        "ts": "2026-11-25T23:23:38-08:00"
+      },
+      {
+        "agent": "analyst",
+        "mint": "AHsBWDbJR1oYKfNvxhEdZPhVgQVfVDQw1e45TG6fXhUZ",
+        "symbol": "Pedro",
+        "reasons": [
+          "RUG FAIL: LP unlocked: only 0.0% burned/locked"
+        ],
+        "ts": "2026-11-25T23:23:38-08:00"
+      },
+      {
+        "agent": "launch_radar",
+        "mint": "2Va4JvHjsvKX2pQTYNAbbajP5eoAK2xkdh6Exw2DZ5Th",
+        "symbol": "Jensen",
+        "reasons": [
+          "universe: liquidity $33,299 < $40,000; 5m volume $8,981 < $25,000"
+        ],
+        "ts": "2026-11-25T23:23:17-08:00"
+      },
+      {
+        "agent": "launch_radar",
+        "mint": "E4mGb1dnecnifnyM5xqHb1sPgthJBrbBdKUFcru1oJ2W",
+        "symbol": "SPACEXLIFE",
+        "reasons": [
+          "universe: 5m volume $23,355 < $25,000"
+        ],
+        "ts": "2026-11-25T23:23:17-08:00"
+      },
+      {
+        "agent": "launch_radar",
+        "mint": "AWyA4N489v8XCKBdawttWdfHp9ik361oqCrw2MzcTa1W",
+        "symbol": "Fug",
+        "reasons": [
+          "universe: liquidity $7 < $40,000"
+        ],
+        "ts": "2026-11-25T23:23:17-08:00"
+      },
       {
         "agent": "launch_radar",
         "mint": "FL8wA5BP1woRrHNbYKwUf6iPxiuosyybsWwmVqsGsB88",
@@ -13649,60 +13826,6 @@
           "universe: liquidity $15,412 < $40,000"
         ],
         "ts": "2026-11-25T23:13:41-08:00"
-      },
-      {
-        "agent": "launch_radar",
-        "mint": "4Rf4cMCVwcLbqfpt4uZjBPxQrZbKJPTLQBhrKDrqcBqb",
-        "symbol": "SI",
-        "reasons": [
-          "universe: liquidity $30,496 < $40,000"
-        ],
-        "ts": "2026-11-25T23:13:41-08:00"
-      },
-      {
-        "agent": "launch_radar",
-        "mint": "3QVBSB2kuJiQ75Po8qq4eV7msNFo7jMn22wfKuCTpump",
-        "symbol": "Fug",
-        "reasons": [
-          "universe: liquidity $20,554 < $40,000"
-        ],
-        "ts": "2026-11-25T23:13:41-08:00"
-      },
-      {
-        "agent": "holder_map",
-        "mint": "8e3ZphcWCiZDtqS2ZTxDZC3Bh33evT8tYJp2VXE9iKoB",
-        "symbol": "philanthro",
-        "reasons": [
-          "universe: 269 holders < 300"
-        ],
-        "ts": "2026-11-25T23:07:17-08:00"
-      },
-      {
-        "agent": "launch_radar",
-        "mint": "CxF1mGM5qMu9YASJiNMsKsSgGZEDrHNjC33uvph2jjxh",
-        "symbol": "Elonmas",
-        "reasons": [
-          "universe: liquidity $14,505 < $40,000; 5m volume $20,333 < $25,000"
-        ],
-        "ts": "2026-11-25T23:07:15-08:00"
-      },
-      {
-        "agent": "launch_radar",
-        "mint": "6ykSWWaHafzkBxGEwGp82AkdK6GeaHTKTG5CBUPdFfbW",
-        "symbol": "Zero",
-        "reasons": [
-          "universe: liquidity $29,488 < $40,000; 5m volume $3,132 < $25,000"
-        ],
-        "ts": "2026-11-25T23:07:15-08:00"
-      },
-      {
-        "agent": "launch_radar",
-        "mint": "Hncv2s2ajFrtTvZSDRDP9NKGUUGEUch7iCM8H33fgLM",
-        "symbol": "XMAS",
-        "reasons": [
-          "universe: liquidity $1 < $40,000"
-        ],
-        "ts": "2026-11-25T23:07:15-08:00"
       }
     ],
     "lastScan": {
@@ -13724,54 +13847,54 @@
       "name": "Launch Radar",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "121 pools seen, 69 fresh mints, 5 passed universe, 59 filtered",
+      "summary": "104 pools seen, 51 fresh mints, 6 passed universe, 45 filtered",
       "role": "SCANNER \u2014 fresh pairs \u22646h (pump.fun / PumpSwap / Raydium / Meteora), liq \u2265$40k, 5m vol \u2265$25k",
-      "updated": "2026-11-25T23:15:24-08:00"
+      "updated": "2026-11-25T23:23:38-08:00"
     },
     {
       "id": "whale_match",
       "name": "Whale Match",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "40 smart + 84 KOL wallets (kolscan); 68 new txs parsed (0 failed); 0 smart-money flags, 0 KOL flags",
+      "summary": "40 smart + 84 KOL wallets (kolscan); 437 new txs parsed (0 failed); 0 smart-money flags, 0 KOL flags",
       "role": "SCANNER \u2014 3+ of 40 smart wallets in 10m; KOL wallets that bought",
-      "updated": "2026-11-25T23:15:24-08:00"
+      "updated": "2026-11-25T23:23:38-08:00"
     },
     {
       "id": "sentiment",
       "name": "Sentiment",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "5 checked: 1 volume spikes, 2 with >70% buys",
+      "summary": "6 checked: 0 volume spikes, 2 with >70% buys",
       "role": "SCANNER \u2014 volume spike >5x 1h avg, buy/sell ratio >70%",
-      "updated": "2026-11-25T23:15:24-08:00"
+      "updated": "2026-11-25T23:23:38-08:00"
     },
     {
       "id": "holder_map",
       "name": "Holder Map",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "5 checked, 5 with \u2265300 holders, 5 holder-growth flags",
+      "summary": "6 checked, 6 with \u2265300 holders, 1 holder-growth flags",
       "role": "SCANNER \u2014 \u2265300 holders, holder growth; dev % and top-10 % for Rug Check",
-      "updated": "2026-11-25T23:15:24-08:00"
+      "updated": "2026-11-25T23:23:38-08:00"
     },
     {
       "id": "lp_auditor",
       "name": "LP Auditor",
       "spec_role": "RUG CHECK",
       "state": "ok",
-      "summary": "5 audited, 0 passed mint/freeze/LP",
+      "summary": "6 audited, 1 passed mint/freeze/LP",
       "role": "RUG CHECK \u2014 no open mint, no freeze authority, LP burned or locked 30d+; watches for LP pulls",
-      "updated": "2026-11-25T23:15:24-08:00"
+      "updated": "2026-11-25T23:23:38-08:00"
     },
     {
       "id": "analyst",
       "name": "Analyst",
       "spec_role": "RUG CHECK",
       "state": "ok",
-      "summary": "5 reviewed, 0 rug PASS, 0 eligible to enter",
+      "summary": "6 reviewed, 0 rug PASS, 0 eligible to enter",
       "role": "RUG CHECK \u2014 dev <5%, top-10 <35%, no bundle, LP ok, Jupiter sell sim; \u22652 signals; no chasing; momentum (buys>sells, 5m vol \u22651.2x avg, no +25%/5m or +150%/1h top)",
-      "updated": "2026-11-25T23:15:24-08:00"
+      "updated": "2026-11-25T23:23:38-08:00"
     },
     {
       "id": "risk",
@@ -13780,7 +13903,7 @@
       "state": "ok",
       "summary": "equity 0.3851 SOL, peak 0.3851, drawdown +0.0%; 0 open / 2 free slot(s); loss streak 2 \u2192 size halved",
       "role": "SIZER \u2014 20\u201325% of equity by signal strength, max 2 open, \u221250% after 2 losses, \u221230% drawdown pause",
-      "updated": "2026-11-25T23:15:24-08:00"
+      "updated": "2026-11-25T23:23:38-08:00"
     },
     {
       "id": "executor",
@@ -13789,7 +13912,7 @@
       "state": "idle",
       "summary": "no entries this run",
       "role": "EXECUTOR \u2014 2.5% max slippage, entries split in 2 parts",
-      "updated": "2026-11-25T23:15:24-08:00"
+      "updated": "2026-11-25T23:23:38-08:00"
     },
     {
       "id": "profit_taker",
@@ -13798,16 +13921,16 @@
       "state": "idle",
       "summary": "watching 0 open position(s), no exit triggered",
       "role": "EXECUTOR exits \u2014 40% at 2x, 36% at 4x, runner on 25% trail; \u221212% stop; 25m time stop; dev-sell / LP-pull exit",
-      "updated": "2026-11-25T23:15:05-08:00"
+      "updated": "2026-11-25T23:23:12-08:00"
     },
     {
       "id": "journal",
       "name": "Journal",
       "spec_role": "LOGGER + EQUITY",
       "state": "ok",
-      "summary": "450 night-log lines since 18:00 PT; equity point 0.3851 SOL logged",
+      "summary": "456 night-log lines since 18:00 PT; equity point 0.3851 SOL logged",
       "role": "LOGGER + EQUITY \u2014 night log + equity curve",
-      "updated": "2026-11-25T23:15:24-08:00"
+      "updated": "2026-11-25T23:23:38-08:00"
     }
   ],
   "rules": {
