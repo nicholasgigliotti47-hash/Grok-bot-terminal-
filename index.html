@@ -224,32 +224,6 @@
   "version": "overnight-v2",
   "nightLog": [
     {
-      "ts": "2026-11-24T19:51:38-08:00",
-      "kind": "FILTERED",
-      "token": "\u83ab\u8fbe",
-      "mint": "7rap1ZMRbZAEAH8BxB3s4eR4jmaxaTXppH64AZArvh8X",
-      "reason": "universe: liquidity $13,607 < $40,000; 5m volume $23,221 < $25,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261124T195135"
-    },
-    {
-      "ts": "2026-11-24T19:51:38-08:00",
-      "kind": "FILTERED",
-      "token": "GATLAS",
-      "mint": "Bo7EiP5soZwNw1NFGdrqgH1gw8uPwnLBcM9KNcramoon",
-      "reason": "universe: 5m volume $9,468 < $25,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261124T195135"
-    },
-    {
       "ts": "2026-11-24T19:51:51-08:00",
       "kind": "FILTERED",
       "token": "4CHAN",
@@ -20983,9 +20957,44 @@
           "holder_growth"
         ]
       }
+    },
+    {
+      "ts": "2026-11-25T17:11:39-08:00",
+      "kind": "FILTERED",
+      "token": "PUMPDOG",
+      "mint": "73R7L2jLfnweJTXxTiccHMZV6mECaVELPUy3PkHopump",
+      "reason": "universe: 5m volume $7,874 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261125T171136"
+    },
+    {
+      "ts": "2026-11-25T17:11:51-08:00",
+      "kind": "FILTERED",
+      "token": "MONEY",
+      "mint": "DeACAbp2GMzapB6Z2K8qdkTZupmNbKc6EZx9bnbCpump",
+      "reason": "rug PASS but only 0 scanner signal(s) (none); need 2",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Analyst",
+      "run_id": "20261125T171136",
+      "extra": {
+        "signals": {
+          "volume_spike": "5m vol 3.4x the 1h avg",
+          "buy_pressure": "60% buys (1334/2208) in 5m",
+          "holder_growth": "1603 holders; first snapshot, growth measurable next run",
+          "smart_money": "0 of 40 smart wallets bought in 10m",
+          "kol_buy": "0 KOL wallets bought in 30m"
+        }
+      }
     }
   ],
-  "nightLogCount": 1691,
+  "nightLogCount": 1693,
   "stats": {
     "since": "2026-11-24T18:00:00-08:00",
     "trades": 4,
@@ -21012,89 +21021,21 @@
   "walletSnap": {
     "address": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
     "sol": 0.385144,
-    "sol_usd": 70.83,
-    "sol_value_usd": 27.28,
+    "sol_usd": 70.85,
+    "sol_value_usd": 27.29,
     "token_value_usd": 0.0,
     "equity_sol": 0.385144,
-    "equity_usd": 27.28,
+    "equity_usd": 27.29,
     "source": "cli --sol",
     "solscan": "https://solscan.io/account/56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq"
   },
   "orders": [],
   "lastScanCandidates": [
     {
-      "token": "Zero",
-      "mint": "R2DW4ekK7KyjCiPPUcPZHYwuE2eRCEQsqS8hiuZbxrQ",
-      "liq_usd": 101253.15,
-      "vol_m5": 259241.07,
-      "signals": {
-        "volume_spike": false,
-        "buy_pressure": false,
-        "holder_growth": true,
-        "smart_money": false,
-        "kol_buy": false
-      },
-      "rug": "FAIL",
-      "rug_fails": [
-        "LP unlocked: only 0.0% burned/locked"
-      ]
-    },
-    {
-      "token": "KOOP",
-      "mint": "29KEzraeitfWXT4U1yfvmgiT8UPAmRWuvU7EUzQMdhjx",
-      "liq_usd": 213156.03,
-      "vol_m5": 344398.85,
-      "signals": {
-        "volume_spike": false,
-        "buy_pressure": false,
-        "holder_growth": false,
-        "smart_money": false,
-        "kol_buy": false
-      },
-      "rug": "FAIL",
-      "rug_fails": [
-        "LP unlocked: only 0.0% burned/locked"
-      ]
-    },
-    {
-      "token": "Slingoor",
-      "mint": "Fe7Ue19S5ajDuggUMmeSyyzeu5e9T2wdW1Zjn6CTDqp",
-      "liq_usd": 85518.31,
-      "vol_m5": 271362.31,
-      "signals": {
-        "volume_spike": true,
-        "buy_pressure": false,
-        "holder_growth": true,
-        "smart_money": false,
-        "kol_buy": false
-      },
-      "rug": "FAIL",
-      "rug_fails": [
-        "LP unlocked: only 0.0% burned/locked"
-      ]
-    },
-    {
-      "token": "Zero",
-      "mint": "DTSkmo3sCCKLCh91dJLiWCpwcKtK3yDBZMqZGSV1pump",
-      "liq_usd": 51690.84,
-      "vol_m5": 119581.31,
-      "signals": {
-        "volume_spike": false,
-        "buy_pressure": false,
-        "holder_growth": true,
-        "smart_money": false,
-        "kol_buy": true
-      },
-      "rug": "FAIL",
-      "rug_fails": [
-        "bundled launch: insider/bundle wallet networks hold 12.3% of supply"
-      ]
-    },
-    {
-      "token": "PUMPDOG",
-      "mint": "73R7L2jLfnweJTXxTiccHMZV6mECaVELPUy3PkHopump",
-      "liq_usd": 50730.29,
-      "vol_m5": 71694.88,
+      "token": "MONEY",
+      "mint": "DeACAbp2GMzapB6Z2K8qdkTZupmNbKc6EZx9bnbCpump",
+      "liq_usd": 57792.15,
+      "vol_m5": 118830.86,
       "signals": {
         "volume_spike": false,
         "buy_pressure": false,
@@ -21104,9 +21045,43 @@
       },
       "rug": "PASS",
       "rug_fails": []
+    },
+    {
+      "token": "Zero",
+      "mint": "DTSkmo3sCCKLCh91dJLiWCpwcKtK3yDBZMqZGSV1pump",
+      "liq_usd": 59872.07,
+      "vol_m5": 140296.27,
+      "signals": {
+        "volume_spike": false,
+        "buy_pressure": false,
+        "holder_growth": true,
+        "smart_money": false,
+        "kol_buy": true
+      },
+      "rug": "FAIL",
+      "rug_fails": [
+        "bundled launch: insider/bundle wallet networks hold 13.7% of supply"
+      ]
+    },
+    {
+      "token": "KOOP",
+      "mint": "29KEzraeitfWXT4U1yfvmgiT8UPAmRWuvU7EUzQMdhjx",
+      "liq_usd": 214722.95,
+      "vol_m5": 364676.31,
+      "signals": {
+        "volume_spike": false,
+        "buy_pressure": false,
+        "holder_growth": false,
+        "smart_money": false,
+        "kol_buy": false
+      },
+      "rug": "FAIL",
+      "rug_fails": [
+        "LP unlocked: only 0.0% burned/locked"
+      ]
     }
   ],
-  "generatedAt": "2026-11-25T17:07:20-08:00",
+  "generatedAt": "2026-11-25T17:11:53-08:00",
   "tz": "America/Los_Angeles",
   "wallet": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
   "walletSolHint": 0.38514445,
@@ -26575,6 +26550,24 @@
       "token_value_usd": 0.0,
       "equity_sol": 0.385144,
       "equity_usd": 27.28
+    },
+    {
+      "ts": "2026-11-25T17:11:34-08:00",
+      "sol": 0.385144,
+      "sol_usd": 70.85,
+      "token_value_sol": 0.0,
+      "token_value_usd": 0.0,
+      "equity_sol": 0.385144,
+      "equity_usd": 27.29
+    },
+    {
+      "ts": "2026-11-25T17:11:36-08:00",
+      "sol": 0.385144,
+      "sol_usd": 70.85,
+      "token_value_sol": 0.0,
+      "token_value_usd": 0.0,
+      "equity_sol": 0.385144,
+      "equity_usd": 27.29
     }
   ],
   "tokenAccounts": {
@@ -26641,13 +26634,31 @@
     }
   ],
   "lastDeskRun": {
-    "ts": "2026-11-25T17:07:18-08:00",
+    "ts": "2026-11-25T17:11:51-08:00",
     "command": "scan",
-    "scan_id": "20261125T170658",
-    "tokensChecked": 47,
+    "scan_id": "20261125T171136",
+    "tokensChecked": 60,
     "openPositions": 0,
     "pipeline": [],
     "rejections": [
+      {
+        "agent": "analyst",
+        "mint": "DeACAbp2GMzapB6Z2K8qdkTZupmNbKc6EZx9bnbCpump",
+        "symbol": "MONEY",
+        "reasons": [
+          "rug PASS but only 0 scanner signal(s) (none); need 2"
+        ],
+        "ts": "2026-11-25T17:11:51-08:00"
+      },
+      {
+        "agent": "launch_radar",
+        "mint": "73R7L2jLfnweJTXxTiccHMZV6mECaVELPUy3PkHopump",
+        "symbol": "PUMPDOG",
+        "reasons": [
+          "universe: 5m volume $7,874 < $25,000"
+        ],
+        "ts": "2026-11-25T17:11:39-08:00"
+      },
       {
         "agent": "analyst",
         "mint": "Fe7Ue19S5ajDuggUMmeSyyzeu5e9T2wdW1Zjn6CTDqp",
@@ -26854,24 +26865,6 @@
           "universe: liquidity $10,879 < $40,000"
         ],
         "ts": "2026-11-25T16:57:54-08:00"
-      },
-      {
-        "agent": "launch_radar",
-        "mint": "8R1dL4U2xLdFL1ZXPNh1WvQUympRiqAQHXrHFdzkpump",
-        "symbol": "SPACE",
-        "reasons": [
-          "universe: liquidity $0 < $40,000"
-        ],
-        "ts": "2026-11-25T16:57:54-08:00"
-      },
-      {
-        "agent": "launch_radar",
-        "mint": "837JdjWgAxx26fkcBpwLMVYbhYTUJ8uzu1mjvtxTqzES",
-        "symbol": "SNOOD",
-        "reasons": [
-          "universe: liquidity $2 < $40,000; 5m volume $13,563 < $25,000"
-        ],
-        "ts": "2026-11-25T16:57:54-08:00"
       }
     ],
     "lastScan": {
@@ -26893,54 +26886,54 @@
       "name": "Launch Radar",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "109 pools seen, 47 fresh mints, 5 passed universe, 41 filtered",
+      "summary": "125 pools seen, 60 fresh mints, 3 passed universe, 56 filtered",
       "role": "SCANNER \u2014 fresh pairs \u22646h (pump.fun / PumpSwap / Raydium / Meteora), liq \u2265$40k, 5m vol \u2265$25k",
-      "updated": "2026-11-25T17:07:18-08:00"
+      "updated": "2026-11-25T17:11:51-08:00"
     },
     {
       "id": "whale_match",
       "name": "Whale Match",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "40 smart + 79 KOL wallets (kolscan); 488 new txs parsed (0 failed); 0 smart-money flags, 1 KOL flags",
+      "summary": "40 smart + 79 KOL wallets (kolscan); 250 new txs parsed (0 failed); 0 smart-money flags, 1 KOL flags",
       "role": "SCANNER \u2014 3+ of 40 smart wallets in 10m; KOL wallets that bought",
-      "updated": "2026-11-25T17:07:18-08:00"
+      "updated": "2026-11-25T17:11:51-08:00"
     },
     {
       "id": "sentiment",
       "name": "Sentiment",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "5 checked: 1 volume spikes, 0 with >70% buys",
+      "summary": "3 checked: 0 volume spikes, 0 with >70% buys",
       "role": "SCANNER \u2014 volume spike >5x 1h avg, buy/sell ratio >70%",
-      "updated": "2026-11-25T17:07:18-08:00"
+      "updated": "2026-11-25T17:11:51-08:00"
     },
     {
       "id": "holder_map",
       "name": "Holder Map",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "5 checked, 5 with \u2265300 holders, 3 holder-growth flags",
+      "summary": "3 checked, 3 with \u2265300 holders, 1 holder-growth flags",
       "role": "SCANNER \u2014 \u2265300 holders, holder growth; dev % and top-10 % for Rug Check",
-      "updated": "2026-11-25T17:07:18-08:00"
+      "updated": "2026-11-25T17:11:51-08:00"
     },
     {
       "id": "lp_auditor",
       "name": "LP Auditor",
       "spec_role": "RUG CHECK",
       "state": "ok",
-      "summary": "5 audited, 2 passed mint/freeze/LP",
+      "summary": "3 audited, 2 passed mint/freeze/LP",
       "role": "RUG CHECK \u2014 no open mint, no freeze authority, LP burned or locked 30d+; watches for LP pulls",
-      "updated": "2026-11-25T17:07:18-08:00"
+      "updated": "2026-11-25T17:11:51-08:00"
     },
     {
       "id": "analyst",
       "name": "Analyst",
       "spec_role": "RUG CHECK",
       "state": "ok",
-      "summary": "5 reviewed, 1 rug PASS, 0 eligible to enter",
+      "summary": "3 reviewed, 1 rug PASS, 0 eligible to enter",
       "role": "RUG CHECK \u2014 dev <5%, top-10 <35%, no bundle, LP ok, Jupiter sell sim; \u22652 signals; no chasing; momentum (buys>sells, 5m vol \u22651.2x avg, no +25%/5m or +150%/1h top)",
-      "updated": "2026-11-25T17:07:18-08:00"
+      "updated": "2026-11-25T17:11:51-08:00"
     },
     {
       "id": "risk",
@@ -26949,7 +26942,7 @@
       "state": "ok",
       "summary": "equity 0.3851 SOL, peak 0.4320, drawdown -10.8%; 0 open / 2 free slot(s); loss streak 2 \u2192 size halved",
       "role": "SIZER \u2014 20\u201325% of equity by signal strength, max 2 open, \u221250% after 2 losses, \u221230% drawdown pause",
-      "updated": "2026-11-25T17:07:18-08:00"
+      "updated": "2026-11-25T17:11:51-08:00"
     },
     {
       "id": "executor",
@@ -26958,7 +26951,7 @@
       "state": "idle",
       "summary": "no entries this run",
       "role": "EXECUTOR \u2014 2.5% max slippage, entries split in 2 parts",
-      "updated": "2026-11-25T17:07:18-08:00"
+      "updated": "2026-11-25T17:11:51-08:00"
     },
     {
       "id": "profit_taker",
@@ -26967,16 +26960,16 @@
       "state": "idle",
       "summary": "watching 0 open position(s), no exit triggered",
       "role": "EXECUTOR exits \u2014 40% at 2x, 36% at 4x, runner on 25% trail; \u221212% stop; 25m time stop; dev-sell / LP-pull exit",
-      "updated": "2026-11-25T17:06:57-08:00"
+      "updated": "2026-11-25T17:11:34-08:00"
     },
     {
       "id": "journal",
       "name": "Journal",
       "spec_role": "LOGGER + EQUITY",
       "state": "ok",
-      "summary": "1691 night-log lines since 18:00 PT; equity point 0.3851 SOL logged",
+      "summary": "1693 night-log lines since 18:00 PT; equity point 0.3851 SOL logged",
       "role": "LOGGER + EQUITY \u2014 night log + equity curve",
-      "updated": "2026-11-25T17:07:18-08:00"
+      "updated": "2026-11-25T17:11:51-08:00"
     }
   ],
   "rules": {
