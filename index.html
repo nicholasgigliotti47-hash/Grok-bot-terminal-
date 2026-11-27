@@ -1537,6 +1537,36 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
         "tx": "vWDvAWCk9JN551RE2wdRJxxFCh6zMxvoiBVmRNUrMwvyxFygZXhAm6Q5mSQxE2gipwd3yKri1teQDdMHEKDyDwa",
         "solscan": "https://solscan.io/tx/vWDvAWCk9JN551RE2wdRJxxFCh6zMxvoiBVmRNUrMwvyxFygZXhAm6Q5mSQxE2gipwd3yKri1teQDdMHEKDyDwa"
       }
+    },
+    {
+      "ts": "2026-11-27T15:12:21-08:00",
+      "kind": "EXIT-ORDER",
+      "token": "Hyperball",
+      "mint": "5TkyHpVZCnuW6w21q6mvFQ2Fgyvq3KySHJqfuki9pump",
+      "reason": "exit-hard-stop: live sell quote -71.9% \u2264 -15% hard stop (mark -59.7%)",
+      "size_sol": null,
+      "fill_price_usd": 3.146e-05,
+      "pnl_sol": null,
+      "pnl_pct": -59.66,
+      "agent": "Profit Taker / Stop Guard",
+      "run_id": "20261127T151221"
+    },
+    {
+      "ts": "2026-11-27T15:12:57-08:00",
+      "kind": "EXIT",
+      "token": "Hyperball",
+      "mint": "5TkyHpVZCnuW6w21q6mvFQ2Fgyvq3KySHJqfuki9pump",
+      "reason": "closed (exit-hard-stop); spent 0.0609 SOL, got 0.0225 SOL; tx 4nLgKTae4BeZTwW6HuTDpyDsAmQtNLy21hRMf4Pxd6HNh5HVqVhLLeJ2Z2DvKs2TVmKD9K9EcNbbx7zannCY8Syq",
+      "size_sol": 0.022465,
+      "fill_price_usd": 2.8693317774984262e-05,
+      "pnl_sol": -0.038435,
+      "pnl_pct": -63.11,
+      "agent": "Profit Taker / Stop Guard",
+      "run_id": "20261127T151257",
+      "extra": {
+        "tx": "4nLgKTae4BeZTwW6HuTDpyDsAmQtNLy21hRMf4Pxd6HNh5HVqVhLLeJ2Z2DvKs2TVmKD9K9EcNbbx7zannCY8Syq",
+        "solscan": "https://solscan.io/tx/4nLgKTae4BeZTwW6HuTDpyDsAmQtNLy21hRMf4Pxd6HNh5HVqVhLLeJ2Z2DvKs2TVmKD9K9EcNbbx7zannCY8Syq"
+      }
     }
   ],
   "filteredAllTime": 7184,
@@ -1789,65 +1819,32 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "opened": "2026-11-27T14:38:46-08:00",
       "closed": "2026-11-27T14:52:05-08:00",
       "peak_price_usd": 0.0007253
-    }
-  ],
-  "livePositions": [
+    },
     {
       "token": "Hyperball",
       "mint": "5TkyHpVZCnuW6w21q6mvFQ2Fgyvq3KySHJqfuki9pump",
-      "dex": "https://dexscreener.com/solana/jbk1ddp65eroa9zdv5ggjfx5bug6kd7y8g2gncfsokwo",
-      "opened": "2026-11-27T15:05:38-08:00",
-      "age_min": 0.3,
-      "tx": "4nSG5yDDtNXL7FgjTgNxFPM4G3soFjzS2248WtvYVqkEk7ZTuhn9F7nhYo4SUqDtSXUaAmhMqMqRszdz51tL82N2",
-      "solscan_tx": "https://solscan.io/tx/4nSG5yDDtNXL7FgjTgNxFPM4G3soFjzS2248WtvYVqkEk7ZTuhn9F7nhYo4SUqDtSXUaAmhMqMqRszdz51tL82N2",
+      "reason": "exit-hard-stop",
+      "sell_tx": "4nLgKTae4BeZTwW6HuTDpyDsAmQtNLy21hRMf4Pxd6HNh5HVqVhLLeJ2Z2DvKs2TVmKD9K9EcNbbx7zannCY8Syq",
+      "sell_txs": [
+        "4nLgKTae4BeZTwW6HuTDpyDsAmQtNLy21hRMf4Pxd6HNh5HVqVhLLeJ2Z2DvKs2TVmKD9K9EcNbbx7zannCY8Syq"
+      ],
+      "buy_tx": "4nSG5yDDtNXL7FgjTgNxFPM4G3soFjzS2248WtvYVqkEk7ZTuhn9F7nhYo4SUqDtSXUaAmhMqMqRszdz51tL82N2",
       "sol_spent": 0.0609,
-      "tokens_est": 55870.085536,
-      "remaining_tokens": 55870.085536,
+      "sol_received": 0.02246494,
+      "pnl_sol": -0.038435,
+      "pnl_pct": -63.11,
       "entry_price_usd": 7.798618810405253e-05,
-      "price_usd": 8.277e-05,
-      "peak_price_usd": 8.277e-05,
-      "pnl_pct": 6.13,
-      "value_usd": 4.62,
-      "sold_tp1": false,
-      "sold_2x": false,
-      "sold_4x": false,
-      "liq_usd": 26135.93,
-      "signals": [
-        "volume_spike",
-        "kol_buy"
-      ]
+      "exit_price_usd": 2.8693317774984262e-05,
+      "opened": "2026-11-27T15:05:38-08:00",
+      "closed": "2026-11-27T15:12:57-08:00",
+      "peak_price_usd": 8.092564503434477e-05
     }
   ],
-  "dashTs": "2026-11-27T15:05:57-08:00",
+  "livePositions": [],
+  "dashTs": "2026-11-27T15:12:57-08:00",
   "lastScanSummary": "111 pools seen, 56 fresh mints, 13 passed universe, 43 filtered",
   "version": "overnight-v2",
   "nightLog": [
-    {
-      "ts": "2026-11-27T12:29:42-08:00",
-      "kind": "FILTERED",
-      "token": "TripleT",
-      "mint": "Hivbqk3DcsEaP2gMQtWBG1N3s6KUYryokdBm9Ye8pump",
-      "reason": "universe: liquidity $0 < $25,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T122936"
-    },
-    {
-      "ts": "2026-11-27T12:29:42-08:00",
-      "kind": "FILTERED",
-      "token": "JASONHOUSE",
-      "mint": "HpZVcJxg73KEqfwUff1YXeEJjXsA7fboDZvQTYfnpump",
-      "reason": "universe: liquidity $0 < $25,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T122936"
-    },
     {
       "ts": "2026-11-27T12:29:42-08:00",
       "kind": "FILTERED",
@@ -7587,40 +7584,70 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
         "tx": "vWDvAWCk9JN551RE2wdRJxxFCh6zMxvoiBVmRNUrMwvyxFygZXhAm6Q5mSQxE2gipwd3yKri1teQDdMHEKDyDwa",
         "solscan": "https://solscan.io/tx/vWDvAWCk9JN551RE2wdRJxxFCh6zMxvoiBVmRNUrMwvyxFygZXhAm6Q5mSQxE2gipwd3yKri1teQDdMHEKDyDwa"
       }
+    },
+    {
+      "ts": "2026-11-27T15:12:21-08:00",
+      "kind": "EXIT-ORDER",
+      "token": "Hyperball",
+      "mint": "5TkyHpVZCnuW6w21q6mvFQ2Fgyvq3KySHJqfuki9pump",
+      "reason": "exit-hard-stop: live sell quote -71.9% \u2264 -15% hard stop (mark -59.7%)",
+      "size_sol": null,
+      "fill_price_usd": 3.146e-05,
+      "pnl_sol": null,
+      "pnl_pct": -59.66,
+      "agent": "Profit Taker / Stop Guard",
+      "run_id": "20261127T151221"
+    },
+    {
+      "ts": "2026-11-27T15:12:57-08:00",
+      "kind": "EXIT",
+      "token": "Hyperball",
+      "mint": "5TkyHpVZCnuW6w21q6mvFQ2Fgyvq3KySHJqfuki9pump",
+      "reason": "closed (exit-hard-stop); spent 0.0609 SOL, got 0.0225 SOL; tx 4nLgKTae4BeZTwW6HuTDpyDsAmQtNLy21hRMf4Pxd6HNh5HVqVhLLeJ2Z2DvKs2TVmKD9K9EcNbbx7zannCY8Syq",
+      "size_sol": 0.022465,
+      "fill_price_usd": 2.8693317774984262e-05,
+      "pnl_sol": -0.038435,
+      "pnl_pct": -63.11,
+      "agent": "Profit Taker / Stop Guard",
+      "run_id": "20261127T151257",
+      "extra": {
+        "tx": "4nLgKTae4BeZTwW6HuTDpyDsAmQtNLy21hRMf4Pxd6HNh5HVqVhLLeJ2Z2DvKs2TVmKD9K9EcNbbx7zannCY8Syq",
+        "solscan": "https://solscan.io/tx/4nLgKTae4BeZTwW6HuTDpyDsAmQtNLy21hRMf4Pxd6HNh5HVqVhLLeJ2Z2DvKs2TVmKD9K9EcNbbx7zannCY8Syq"
+      }
     }
   ],
-  "nightLogCount": 2805,
+  "nightLogCount": 2807,
   "stats": {
     "since": "2026-11-26T18:00:00-08:00",
-    "trades": 7,
+    "trades": 8,
     "wins": 2,
-    "losses": 5,
-    "win_rate": 0.286,
-    "realized_pnl_sol": -0.015916,
-    "all_time_closed": 13,
+    "losses": 6,
+    "win_rate": 0.25,
+    "realized_pnl_sol": -0.054351,
+    "all_time_closed": 14,
     "all_time_wins": 3,
-    "all_time_losses": 10
+    "all_time_losses": 11
   },
   "session": {
     "start": "2026-11-26T18:00:00-08:00",
-    "sol": 0.312181463,
-    "equity_sol": 0.384645,
+    "sol": 0.334646403,
+    "equity_sol": 0.334646,
     "peak_equity_sol": 0.385144,
-    "drawdown_pct": -0.13,
+    "drawdown_pct": -13.11,
     "paused": false,
-    "loss_streak": 0,
+    "loss_streak": 1,
     "halved": false,
-    "open": 1,
-    "slots": 2
+    "open": 0,
+    "slots": 3
   },
   "walletSnap": {
     "address": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
-    "sol": 0.312181,
-    "sol_usd": 71.5,
-    "sol_value_usd": 22.32,
-    "token_value_usd": 4.62,
-    "equity_sol": 0.384645,
-    "equity_usd": 27.5,
+    "sol": 0.334646,
+    "sol_usd": 71.36,
+    "sol_value_usd": 23.88,
+    "token_value_usd": 0.0,
+    "equity_sol": 0.334646,
+    "equity_usd": 23.88,
     "source": "record (--wallet-sol)",
     "solscan": "https://solscan.io/account/56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq"
   },
@@ -7825,41 +7852,11 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "rug_fails": []
     }
   ],
-  "generatedAt": "2026-11-27T15:05:59-08:00",
+  "generatedAt": "2026-11-27T15:13:09-08:00",
   "tz": "America/Los_Angeles",
   "wallet": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
-  "walletSolHint": 0.312181463,
-  "positions": [
-    {
-      "token": "Hyperball",
-      "mint": "5TkyHpVZCnuW6w21q6mvFQ2Fgyvq3KySHJqfuki9pump",
-      "sol_spent": 0.0609,
-      "tokens_est": 55870.085536,
-      "entry_price_usd": 7.798618810405253e-05,
-      "peak_price_usd": 8.092564503434477e-05,
-      "tx": "4nSG5yDDtNXL7FgjTgNxFPM4G3soFjzS2248WtvYVqkEk7ZTuhn9F7nhYo4SUqDtSXUaAmhMqMqRszdz51tL82N2",
-      "txs": [
-        "4nSG5yDDtNXL7FgjTgNxFPM4G3soFjzS2248WtvYVqkEk7ZTuhn9F7nhYo4SUqDtSXUaAmhMqMqRszdz51tL82N2",
-        "vWDvAWCk9JN551RE2wdRJxxFCh6zMxvoiBVmRNUrMwvyxFygZXhAm6Q5mSQxE2gipwd3yKri1teQDdMHEKDyDwa"
-      ],
-      "opened": "2026-11-27T15:05:38-08:00",
-      "sold_tokens": 0.0,
-      "sold_fraction": 0.0,
-      "sold_tp1": false,
-      "sold_2x": false,
-      "sold_4x": false,
-      "sol_received": 0.0,
-      "pool": "JBk1DDp65Eroa9zdv5GgjFX5BuG6kD7Y8g2GncfSokWo",
-      "dex": null,
-      "signals": [
-        "volume_spike",
-        "kol_buy"
-      ],
-      "liq_at_entry_usd": 25621.74,
-      "dev_balance_baseline": 0.0,
-      "version": "overnight-v2"
-    }
-  ],
+  "walletSolHint": 0.334646403,
+  "positions": [],
   "closed": [
     {
       "token": "Holders",
@@ -8088,11 +8085,30 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "opened": "2026-11-27T14:38:46-08:00",
       "closed": "2026-11-27T14:52:05-08:00",
       "peak_price_usd": 0.0007253
+    },
+    {
+      "token": "Hyperball",
+      "mint": "5TkyHpVZCnuW6w21q6mvFQ2Fgyvq3KySHJqfuki9pump",
+      "reason": "exit-hard-stop",
+      "sell_tx": "4nLgKTae4BeZTwW6HuTDpyDsAmQtNLy21hRMf4Pxd6HNh5HVqVhLLeJ2Z2DvKs2TVmKD9K9EcNbbx7zannCY8Syq",
+      "sell_txs": [
+        "4nLgKTae4BeZTwW6HuTDpyDsAmQtNLy21hRMf4Pxd6HNh5HVqVhLLeJ2Z2DvKs2TVmKD9K9EcNbbx7zannCY8Syq"
+      ],
+      "buy_tx": "4nSG5yDDtNXL7FgjTgNxFPM4G3soFjzS2248WtvYVqkEk7ZTuhn9F7nhYo4SUqDtSXUaAmhMqMqRszdz51tL82N2",
+      "sol_spent": 0.0609,
+      "sol_received": 0.02246494,
+      "pnl_sol": -0.038435,
+      "pnl_pct": -63.11,
+      "entry_price_usd": 7.798618810405253e-05,
+      "exit_price_usd": 2.8693317774984262e-05,
+      "opened": "2026-11-27T15:05:38-08:00",
+      "closed": "2026-11-27T15:12:57-08:00",
+      "peak_price_usd": 8.092564503434477e-05
     }
   ],
   "daily": {
     "date": "2026-11-24",
-    "realized_pnl_sol": -0.110977306,
+    "realized_pnl_sol": -0.149412366,
     "start_sol": 0.339525642
   },
   "equity": [
@@ -23534,6 +23550,25 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "token_value_usd": 4.62,
       "equity_sol": 0.384645,
       "equity_usd": 27.5
+    },
+    {
+      "ts": "2026-11-27T15:12:21-08:00",
+      "sol": 0.312181,
+      "sol_usd": 71.41,
+      "token_value_sol": 0.027544,
+      "token_value_usd": 1.76,
+      "equity_sol": 0.339725,
+      "equity_usd": 24.26
+    },
+    {
+      "ts": "2026-11-27T15:12:57-08:00",
+      "event": "record sell",
+      "sol": 0.334646,
+      "sol_usd": 71.36,
+      "token_value_sol": 0.0,
+      "token_value_usd": 0.0,
+      "equity_sol": 0.334646,
+      "equity_usd": 23.88
     }
   ],
   "tokenAccounts": {
@@ -23544,15 +23579,6 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
     "CASHx9KJUStyftLFWGvEVf59SGeG9sh5FfcnZMVPCASH": "HxPPLfP1RZ3z5XURCNjxbHbWC1vcbWeb7yG3LSwecA3u"
   },
   "knownTrades": [
-    {
-      "side": "BUY",
-      "token": "Hyperball",
-      "mint": "5TkyHpVZCnuW6w21q6mvFQ2Fgyvq3KySHJqfuki9pump",
-      "sol": 0.0609,
-      "ts": "2026-11-27T15:05:38-08:00",
-      "tx": "4nSG5yDDtNXL7FgjTgNxFPM4G3soFjzS2248WtvYVqkEk7ZTuhn9F7nhYo4SUqDtSXUaAmhMqMqRszdz51tL82N2",
-      "reason": "desk entry"
-    },
     {
       "side": "SELL",
       "token": "Holders",
@@ -23669,14 +23695,23 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "ts": "2026-11-27T14:52:05-08:00",
       "tx": "DnnEd5pLpqgRk6r2NzQcdJwbTKA7X4SwsvAjR9hNXwPKKiZBYaFLESDYyub7CZfYpcprqMW8636g9XozUDgrzKV",
       "reason": "exit-dev-sold"
+    },
+    {
+      "side": "SELL",
+      "token": "Hyperball",
+      "mint": "5TkyHpVZCnuW6w21q6mvFQ2Fgyvq3KySHJqfuki9pump",
+      "sol": 0.02246494,
+      "ts": "2026-11-27T15:12:57-08:00",
+      "tx": "4nLgKTae4BeZTwW6HuTDpyDsAmQtNLy21hRMf4Pxd6HNh5HVqVhLLeJ2Z2DvKs2TVmKD9K9EcNbbx7zannCY8Syq",
+      "reason": "exit-hard-stop"
     }
   ],
   "lastDeskRun": {
-    "ts": "2026-11-27T15:05:57-08:00",
-    "command": "record-buy",
-    "scan_id": "20261127T150557",
+    "ts": "2026-11-27T15:12:57-08:00",
+    "command": "record-sell",
+    "scan_id": "20261127T151257",
     "tokensChecked": 56,
-    "openPositions": 1,
+    "openPositions": 0,
     "pipeline": [],
     "rejections": [
       {
@@ -23978,9 +24013,9 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "name": "Risk Sizer",
       "spec_role": "SIZER",
       "state": "ok",
-      "summary": "equity 0.3846 SOL, peak 0.3851, drawdown -0.1%; 1 open / 2 free slot(s); loss streak 0",
+      "summary": "equity 0.3346 SOL, peak 0.3851, drawdown -13.1%; 0 open / 3 free slot(s); loss streak 1",
       "role": "SIZER \u2014 15%\u201320% of equity by signal strength, max 3 open, \u221250% after 2 losses, \u221230% drawdown pause",
-      "updated": "2026-11-27T15:05:57-08:00"
+      "updated": "2026-11-27T15:12:57-08:00"
     },
     {
       "id": "executor",
@@ -23995,19 +24030,19 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "id": "profit_taker",
       "name": "Profit Taker / Stop Guard",
       "spec_role": "EXECUTOR",
-      "state": "idle",
-      "summary": "watching 0 open position(s), no exit triggered",
+      "state": "exits",
+      "summary": "1 exit order(s): Hyperball exit-hard-stop",
       "role": "EXECUTOR exits \u2014 -15% stop; sell 75% at +20%, rest on 10% trail never below breakeven; 30m stall stop; 120.0m max hold; dev-sell / LP-pull exit",
-      "updated": "2026-11-27T15:04:17-08:00"
+      "updated": "2026-11-27T15:12:21-08:00"
     },
     {
       "id": "journal",
       "name": "Journal",
       "spec_role": "LOGGER + EQUITY",
       "state": "ok",
-      "summary": "2805 night-log lines since 18:00 PT; recorded buy 5TkyHp\u2026; equity 0.3846 SOL",
+      "summary": "2807 night-log lines since 18:00 PT; recorded sell 5TkyHp\u2026; equity 0.3346 SOL",
       "role": "LOGGER + EQUITY \u2014 night log + equity curve",
-      "updated": "2026-11-27T15:05:57-08:00"
+      "updated": "2026-11-27T15:12:57-08:00"
     }
   ],
   "control": {
@@ -24044,24 +24079,24 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
     },
     "usage": {
       "budget_cap_sol": 0.385,
-      "equity_sol": 0.384645,
-      "tradable_equity_sol": 0.384645,
+      "equity_sol": 0.334646,
+      "tradable_equity_sol": 0.334646,
       "above_budget_untraded_sol": 0.0,
-      "open_exposure_sol": 0.0609,
+      "open_exposure_sol": 0.0,
       "pending_entry_sol": 0,
       "pending_entries": 0,
-      "exposure_sol": 0.0609,
+      "exposure_sol": 0.0,
       "max_total_exposure_sol": 0.19,
-      "exposure_room_sol": 0.1291,
-      "exposure_pct_of_cap": 32.1,
+      "exposure_room_sol": 0.19,
+      "exposure_pct_of_cap": 0.0,
       "day_start_equity_sol": 0.385144,
-      "daily_pnl_pct": -0.09,
+      "daily_pnl_pct": -13.08,
       "daily_loss_limit_pct": 15,
       "peak_equity_sol": 0.385,
-      "drawdown_pct": -0.09,
+      "drawdown_pct": -13.08,
       "total_drawdown_limit_pct": 30,
-      "sol": 0.312181,
-      "spendable_sol": 0.302181
+      "sol": 0.334646,
+      "spendable_sol": 0.324646
     },
     "safety_checks": [
       "Exact mint + pool re-verified on DexScreener (pairs_by_address) right before the order",
@@ -24080,18 +24115,18 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "cadence": "every 5 min (routine memecoin-desk-check: monitor, then scan)",
       "cadence_min": 5,
       "last_scan": "2026-11-27T15:04:20-08:00",
-      "last_monitor": "2026-11-27T15:04:17-08:00",
-      "last_check": "2026-11-27T15:04:20-08:00",
-      "healthy_streak": 158
+      "last_monitor": "2026-11-27T15:12:21-08:00",
+      "last_check": "2026-11-27T15:12:21-08:00",
+      "healthy_streak": 159
     },
     "health": {
       "dexscreener": {
         "fails": 0,
-        "last_ok": "2026-11-27T15:04:19-08:00"
+        "last_ok": "2026-11-27T15:12:21-08:00"
       },
       "rpc": {
-        "fails": 1,
-        "last_ok": "2026-11-27T15:04:20-08:00",
+        "fails": 0,
+        "last_ok": "2026-11-27T15:12:21-08:00",
         "last_fail": "2026-11-27T15:05:13-08:00",
         "last_error": "safety check RPC error"
       }
@@ -24320,34 +24355,6 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
     ]
   },
   "journalRecent": [
-    {
-      "ts": "2026-11-27T09:03:07-08:00",
-      "type": "simulated",
-      "event": "PAPER_TRADE",
-      "token": "TEXEL",
-      "mint": "AmegShsP8HA8mNYiY4SvNaKyjPPkCGBJXtdmKfqSQLA8",
-      "sol": 0.05979,
-      "pnl_sol": 0.047023,
-      "pnl_pct": 78.65,
-      "reason": "max-hold",
-      "entry_ts": "2026-11-26T11:09:00-08:00",
-      "exit_ts": "2026-11-26T13:10:00-08:00",
-      "sim_ts": "2026-11-27T09:03:07-08:00"
-    },
-    {
-      "ts": "2026-11-27T09:03:07-08:00",
-      "type": "simulated",
-      "event": "PAPER_TRADE",
-      "token": "\u8681\u5de2",
-      "mint": "5NjMu8yz2tLJuDgj8nvikmicHZ3JTCsLVvujgzQALarw",
-      "sol": 0.05979,
-      "pnl_sol": 0.045606,
-      "pnl_pct": 76.28,
-      "reason": "max-hold",
-      "entry_ts": "2026-11-26T12:12:00-08:00",
-      "exit_ts": "2026-11-26T14:15:00-08:00",
-      "sim_ts": "2026-11-27T09:03:07-08:00"
-    },
     {
       "ts": "2026-11-27T09:03:07-08:00",
       "type": "simulated",
@@ -25091,6 +25098,33 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "solscan": "https://solscan.io/tx/vWDvAWCk9JN551RE2wdRJxxFCh6zMxvoiBVmRNUrMwvyxFygZXhAm6Q5mSQxE2gipwd3yKri1teQDdMHEKDyDwa",
       "part": 2,
       "price_usd": 7.524078069776175e-05
+    },
+    {
+      "ts": "2026-11-27T15:12:21-08:00",
+      "type": "pending",
+      "event": "ORDER",
+      "side": "exit",
+      "token": "Hyperball",
+      "mint": "5TkyHpVZCnuW6w21q6mvFQ2Fgyvq3KySHJqfuki9pump",
+      "order_id": "ex-1127151221-5TkyHp-427e",
+      "reason": "exit-hard-stop: live sell quote -71.9% \u2264 -15% hard stop (mark -59.7%)",
+      "pnl_pct": -59.66
+    },
+    {
+      "ts": "2026-11-27T15:12:57-08:00",
+      "type": "actual",
+      "event": "SELL",
+      "token": "Hyperball",
+      "mint": "5TkyHpVZCnuW6w21q6mvFQ2Fgyvq3KySHJqfuki9pump",
+      "sol": 0.02246494,
+      "tokens": 55870.085536,
+      "tx": "4nLgKTae4BeZTwW6HuTDpyDsAmQtNLy21hRMf4Pxd6HNh5HVqVhLLeJ2Z2DvKs2TVmKD9K9EcNbbx7zannCY8Syq",
+      "solscan": "https://solscan.io/tx/4nLgKTae4BeZTwW6HuTDpyDsAmQtNLy21hRMf4Pxd6HNh5HVqVhLLeJ2Z2DvKs2TVmKD9K9EcNbbx7zannCY8Syq",
+      "reason": "exit-hard-stop",
+      "price_usd": 2.8693317774984262e-05,
+      "pnl_sol": -0.038435,
+      "pnl_pct": -63.11,
+      "order_id": "ex-1127151221-5TkyHp-427e"
     }
   ],
   "rules": {
