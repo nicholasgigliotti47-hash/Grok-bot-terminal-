@@ -6318,7 +6318,7 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       ]
     }
   ],
-  "generatedAt": "2026-11-27T07:21:03-08:00",
+  "generatedAt": "2026-11-27T07:21:30-08:00",
   "tz": "America/Los_Angeles",
   "wallet": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
   "walletSolHint": 0.38514445,
@@ -20419,7 +20419,7 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
   var ui = { range: 0, unit: "sol", feed: "all" };
   var $ = function (id) { return document.getElementById(id); };
   function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
-  function num(v){ v = Number(v); return isFinite(v) ? v : null; }
+  function num(v){ if (v == null || v === "" || typeof v === "boolean") return null; v = Number(v); return isFinite(v) ? v : null; }
   function fx(v,d){ v = num(v); return v == null ? "—" : v.toFixed(d == null ? 4 : d); }
   function sgn(v,d,suf){ v = num(v); if (v == null) return "—"; return (v > 0 ? "+" : "") + v.toFixed(d) + (suf || ""); }
   function cls(v){ v = num(v); return v == null || Math.abs(v) < 1e-9 ? "flat" : (v > 0 ? "up" : "down"); }
