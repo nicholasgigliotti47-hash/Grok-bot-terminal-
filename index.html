@@ -153,6 +153,30 @@ section{margin-top:16px}
 .ag .role{font:700 9px var(--mono);letter-spacing:.16em;color:var(--violet);margin-top:6px}
 .ag .sum{font:500 11px var(--sans);color:var(--dim);margin-top:6px;line-height:1.35}
 .ag .upd{font:500 9px var(--mono);color:var(--mute);margin-top:6px}
+.ctl{display:grid;grid-template-columns:1.1fr 1.4fr 1fr;gap:16px}
+.ctl-state{padding:16px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.28)}
+.ctl-state .big2{font:900 30px var(--mono);letter-spacing:.08em;margin:6px 0}
+.ctl-state.on .big2{color:var(--lime);text-shadow:0 0 18px rgba(57,255,136,.55)}
+.ctl-state.off{border-color:rgba(255,59,107,.55);box-shadow:inset 0 0 30px rgba(255,59,107,.12)}
+.ctl-state.off .big2{color:var(--red);text-shadow:0 0 18px rgba(255,59,107,.6)}
+.ctl-state .why{font:500 12px var(--sans);color:var(--dim);line-height:1.4}
+.lim{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center;margin-bottom:9px}
+.lim .n{font:600 11px var(--mono);color:var(--dim);letter-spacing:.06em}
+.lim .v{font:700 12px var(--mono);text-align:right}
+.lim .bar{grid-column:1/-1;height:6px;border-radius:6px;background:rgba(255,255,255,.06);overflow:hidden}
+.lim .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:width 1s}
+.lim .bar i.warn{background:linear-gradient(90deg,var(--amber),var(--red))}
+.chk{list-style:none;margin:0;padding:0;font:500 11.5px var(--sans);color:var(--dim)}
+.chk li{padding:5px 0 5px 20px;position:relative;border-bottom:1px dashed rgba(120,140,255,.08);line-height:1.35}
+.chk li::before{content:"✓";position:absolute;left:2px;color:var(--lime);font-weight:800}
+.simbox{margin-top:12px;padding:12px;border-radius:12px;border:1px dashed var(--amber);background:rgba(255,194,59,.05);font:500 11.5px var(--mono);color:var(--dim);line-height:1.6}
+.simbox b.tag{color:#05060d;background:var(--amber);padding:2px 7px;border-radius:6px;font-weight:800;letter-spacing:.12em}
+.team{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}
+.team .r{padding:12px;border-radius:12px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(139,92,255,.12),rgba(0,240,255,.04))}
+.team .r .t{font:800 11px var(--mono);letter-spacing:.18em;color:var(--cyan)}
+.team .r .a{font:500 12px var(--sans);color:var(--text);margin-top:6px;line-height:1.5}
+@media (max-width:1100px){.ctl{grid-template-columns:1fr 1fr}.team{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:700px){.ctl,.team{grid-template-columns:1fr}}
 .rules{display:flex;flex-wrap:wrap;gap:6px}
 .rules span{font:500 11px var(--mono);padding:5px 9px;border-radius:8px;background:rgba(0,0,0,.28);border:1px solid var(--line);color:var(--dim)}
 .rules b{color:var(--text)}
@@ -197,6 +221,19 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
 
   <section class="stats" id="stats"></section>
 
+  <section class="glass panel" id="ctlPanel">
+    <div class="ph"><h2>System <b>Control</b></h2><span class="pill" id="ctlPill">—</span></div>
+    <div class="ctl">
+      <div>
+        <div class="ctl-state" id="ctlState"></div>
+        <div id="ctlMon" style="font:500 11.5px var(--mono);color:var(--dim);line-height:1.7;margin-top:12px"></div>
+        <div class="simbox" id="ctlSim"></div>
+      </div>
+      <div id="ctlLimits"></div>
+      <div><div style="font:700 10px var(--mono);letter-spacing:.2em;color:var(--mute);margin-bottom:8px">SAFETY CHECKS BEFORE EVERY BUY</div><ul class="chk" id="ctlChecks"></ul></div>
+    </div>
+  </section>
+
   <section class="grid-eq">
     <div class="glass panel">
       <div class="ph"><h2>Equity <b>Curve</b></h2>
@@ -238,6 +275,7 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
 
   <section class="glass panel">
     <div class="ph"><h2>Agent <b>Grid</b></h2><span class="pill" id="agentSum">—</span></div>
+    <div class="team" id="team"></div>
     <div class="agents" id="agents"></div>
   </section>
 
@@ -252,7 +290,7 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
 
 <script type="application/json" id="baked-data">
 {
-  "terminalVersion": "v3-neon",
+  "terminalVersion": "v4-neon-control",
   "decisions": [
     {
       "ts": "2026-11-24T18:12:21-08:00",
@@ -769,21 +807,21 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       }
     }
   ],
-  "filteredAllTime": 6139,
+  "filteredAllTime": 6169,
   "filterCategories": {
-    "Low liquidity": 4323,
-    "Rug check fail": 1006,
-    "Low 5m volume": 374,
-    "Too few holders": 175,
+    "Low liquidity": 4342,
+    "Rug check fail": 1011,
+    "Low 5m volume": 375,
+    "Too few holders": 178,
     "Too few signals": 55,
     "No rug report": 24,
-    "Weak momentum": 19,
+    "Weak momentum": 20,
     "Chase guard": 8
   },
   "filterByAgent": {
-    "Launch Radar": 4852,
-    "Holder Map": 199,
-    "Analyst": 1088
+    "Launch Radar": 4873,
+    "Holder Map": 202,
+    "Analyst": 1094
   },
   "closedRich": [
     {
@@ -891,21 +929,21 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "mint": "F5LxbqJxAMrvfxLbqPckErmqNyiPzDJMUXnX8vrhpump",
       "dex": "https://dexscreener.com/solana/cn4he1ujaoj3sxtwy1wx9rgjj1qqzgh5w34sfho2cedv",
       "opened": "2026-11-27T08:24:28-08:00",
-      "age_min": 5.5,
+      "age_min": 7.2,
       "tx": "3WLyXsbZdD5XbU7W687pvuVArpgrzeQ95yuX7H8PWuXBwKJHCWSv2CTyuPsKDbbKwpDdf6y2ERBaiqfeRLiTNmRe",
       "solscan_tx": "https://solscan.io/tx/3WLyXsbZdD5XbU7W687pvuVArpgrzeQ95yuX7H8PWuXBwKJHCWSv2CTyuPsKDbbKwpDdf6y2ERBaiqfeRLiTNmRe",
       "sol_spent": 0.030693557,
       "tokens_est": 15871.160403999998,
       "remaining_tokens": 15871.160404,
       "entry_price_usd": 0.00013901018079333125,
-      "price_usd": 0.0001236,
+      "price_usd": 0.0001201,
       "peak_price_usd": 0.00014678519162129858,
-      "pnl_pct": -11.09,
-      "value_usd": 1.96,
+      "pnl_pct": -13.6,
+      "value_usd": 1.91,
       "sold_tp1": false,
       "sold_2x": false,
       "sold_4x": false,
-      "liq_usd": 24570.58,
+      "liq_usd": 24213.1,
       "signals": [
         "buy_pressure"
       ]
@@ -915,458 +953,30 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "mint": "B9wbjDJ4FbHMsZmoXAkJSTAwuePaJUKbySvnK5zApump",
       "dex": "https://dexscreener.com/solana/dnxt5j7r1atknh23rsbwyuuc9neixsxbgfrlbmbnmks2",
       "opened": "2026-11-27T08:29:57-08:00",
-      "age_min": 0.0,
+      "age_min": 1.7,
       "tx": "5pevcfu2dmw3CAHT5m3dkoBPDbEMHvFMxaAvMA7GwsxeD3K8T8mPzqPbpbiPNtxco2dkQDAxDUouDpvGUY2jPWY6",
       "solscan_tx": "https://solscan.io/tx/5pevcfu2dmw3CAHT5m3dkoBPDbEMHvFMxaAvMA7GwsxeD3K8T8mPzqPbpbiPNtxco2dkQDAxDUouDpvGUY2jPWY6",
       "sol_spent": 0.031815041,
       "tokens_est": 2620.4221939999998,
       "remaining_tokens": 2620.422194,
       "entry_price_usd": 0.0008733157215542954,
-      "price_usd": 0.0008303,
+      "price_usd": 0.0007249,
       "peak_price_usd": 0.0008733157215542954,
-      "pnl_pct": -4.93,
-      "value_usd": 2.18,
+      "pnl_pct": -16.99,
+      "value_usd": 1.9,
       "sold_tp1": false,
       "sold_2x": false,
       "sold_4x": false,
-      "liq_usd": 65437.85,
+      "liq_usd": 61153.96,
       "signals": [
         "buy_pressure"
       ]
     }
   ],
-  "dashTs": "2026-11-27T08:29:57-08:00",
-  "lastScanSummary": "103 pools seen, 55 fresh mints, 6 passed universe, 49 filtered",
+  "dashTs": "2026-11-27T08:31:41-08:00",
+  "lastScanSummary": "118 pools seen, 68 fresh mints, 14 passed universe, 54 filtered",
   "version": "overnight-v2",
   "nightLog": [
-    {
-      "ts": "2026-11-27T04:52:30-08:00",
-      "kind": "FILTERED",
-      "token": "BOING",
-      "mint": "2GZg1uYWaEJpPx3GN5XXLuJN9umkT3Qzj7BHGnntHwHN",
-      "reason": "universe: liquidity $16,007 < $40,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T045226"
-    },
-    {
-      "ts": "2026-11-27T04:52:30-08:00",
-      "kind": "FILTERED",
-      "token": "KAIRO",
-      "mint": "DKxRTxWTcht8TnFQwcoWLpdg74a9vH5ozHmzSrYAoDmF",
-      "reason": "universe: liquidity $29,551 < $40,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T045226"
-    },
-    {
-      "ts": "2026-11-27T04:52:30-08:00",
-      "kind": "FILTERED",
-      "token": "boing",
-      "mint": "4Pn1GC4gbSQhamjk1sRDa9LNrGyByhoms1sA5gG2B5Uj",
-      "reason": "universe: liquidity $31,714 < $40,000; 5m volume $15,263 < $25,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T045226"
-    },
-    {
-      "ts": "2026-11-27T04:52:36-08:00",
-      "kind": "FILTERED",
-      "token": "RHINODINOS",
-      "mint": "KXC439tYg6A5G3GriTr6bnySQCNzjTxBJu6S3WZD5TN",
-      "reason": "universe: 97 holders < 300",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Holder Map",
-      "run_id": "20261127T045226"
-    },
-    {
-      "ts": "2026-11-27T04:52:38-08:00",
-      "kind": "FILTERED",
-      "token": "WOOPY",
-      "mint": "Eq97TxWUXMuGhTx1jCMJJhmUvHx7c2nD2vGLBN1SXajF",
-      "reason": "RUG FAIL: top-10 holders 37.8% \u2265 35%; LP unlocked: only 0.0% burned/locked",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Analyst",
-      "run_id": "20261127T045226",
-      "extra": {
-        "signals": [
-          "buy_pressure"
-        ]
-      }
-    },
-    {
-      "ts": "2026-11-27T04:52:38-08:00",
-      "kind": "FILTERED",
-      "token": "GTA6",
-      "mint": "6R4jjE2Wp7exoc8xUhzvMtM9Lc9rtaeuu1HeFuHkWsW",
-      "reason": "RUG FAIL: LP unlocked: only 0.0% burned/locked",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Analyst",
-      "run_id": "20261127T045226",
-      "extra": {
-        "signals": [
-          "buy_pressure"
-        ]
-      }
-    },
-    {
-      "ts": "2026-11-27T04:52:38-08:00",
-      "kind": "FILTERED",
-      "token": "ELON",
-      "mint": "F8aShZDFEUC56VNrgCeK1N72rWJu5WhCvRy8jsFtS4hY",
-      "reason": "RUG FAIL: top-10 holders 45.1% \u2265 35%; LP unlocked: only 0.0% burned/locked",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Analyst",
-      "run_id": "20261127T045226",
-      "extra": {
-        "signals": [
-          "buy_pressure"
-        ]
-      }
-    },
-    {
-      "ts": "2026-11-27T04:52:38-08:00",
-      "kind": "FILTERED",
-      "token": "clank",
-      "mint": "CStVdVwPuZynh7mY1mb7zE3ByFnYbHGJpbpg2W9NWeiS",
-      "reason": "RUG FAIL: LP unlocked: only 0.0% burned/locked",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Analyst",
-      "run_id": "20261127T045226",
-      "extra": {
-        "signals": [
-          "buy_pressure"
-        ]
-      }
-    },
-    {
-      "ts": "2026-11-27T04:52:38-08:00",
-      "kind": "FILTERED",
-      "token": "RHINODINOS",
-      "mint": "QoAXjmfUbR5qiapw7aDmsKYN24yh6dcorVdcimYUJ7U",
-      "reason": "RUG FAIL: LP unlocked: only 0.0% burned/locked",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Analyst",
-      "run_id": "20261127T045226",
-      "extra": {
-        "signals": []
-      }
-    },
-    {
-      "ts": "2026-11-27T04:54:47-08:00",
-      "kind": "FILTERED",
-      "token": "boing",
-      "mint": "AvBosaVvxb6uYFZctoWL1CT7VyQZ4FYsEySaS7ECMMUA",
-      "reason": "universe: liquidity $6 < $40,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T045443"
-    },
-    {
-      "ts": "2026-11-27T04:54:47-08:00",
-      "kind": "FILTERED",
-      "token": "\u30da\u30f3\u30ae\u30f3",
-      "mint": "HNcHTz7WktvZZBFL6WSNiNY74jHwS8sQ4mDEp1G33pLG",
-      "reason": "universe: liquidity $6 < $40,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T045443"
-    },
-    {
-      "ts": "2026-11-27T04:54:47-08:00",
-      "kind": "FILTERED",
-      "token": "boing",
-      "mint": "4an4F8Wdi1tXUCFarrhcQvZY4MCVvixcRhT4pANusbha",
-      "reason": "universe: liquidity $0 < $40,000; 5m volume $24,917 < $25,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T045443"
-    },
-    {
-      "ts": "2026-11-27T04:54:47-08:00",
-      "kind": "FILTERED",
-      "token": "MUMU",
-      "mint": "EQ6BomB26DxoaMgRMnKoZq2MsBupTG6JR1XjKbGsxPKs",
-      "reason": "universe: liquidity $14,239 < $40,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T045443"
-    },
-    {
-      "ts": "2026-11-27T04:54:47-08:00",
-      "kind": "FILTERED",
-      "token": "huh",
-      "mint": "4juKkks62qg6mpeyDoiTMY53SqFF2wxEJcuCAPoWDWcF",
-      "reason": "universe: liquidity $0 < $40,000; 5m volume $12,970 < $25,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T045443"
-    },
-    {
-      "ts": "2026-11-27T04:54:47-08:00",
-      "kind": "FILTERED",
-      "token": "Mumu-chan",
-      "mint": "7Goy9jMDtkrT6ppW6QAHnFDrjcEFqwtWbKzr2oWmpump",
-      "reason": "main pair is 14506.5h old (not launched/migrated in last 6h)",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T045443"
-    },
-    {
-      "ts": "2026-11-27T04:54:47-08:00",
-      "kind": "FILTERED",
-      "token": "Aibull",
-      "mint": "HNLQwa4P9GHjC5A9XL5zcTEDskhYQmRGizZLEcJfmoon",
-      "reason": "universe: 5m volume $6,983 < $25,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T045443"
-    },
-    {
-      "ts": "2026-11-27T04:54:47-08:00",
-      "kind": "FILTERED",
-      "token": "huh",
-      "mint": "DuRBnA1ErhWBBmwwc5b476m44cDS2awdSjaMvQxrVvT2",
-      "reason": "universe: liquidity $28,918 < $40,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T045443"
-    },
-    {
-      "ts": "2026-11-27T04:54:52-08:00",
-      "kind": "FILTERED",
-      "token": "MUMU",
-      "mint": "BLpUbUGakZkLWASfRuHTHe7cjZe8LLxikmuCvFgrReHr",
-      "reason": "universe: 265 holders < 300",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Holder Map",
-      "run_id": "20261127T045443"
-    },
-    {
-      "ts": "2026-11-27T05:02:28-08:00",
-      "kind": "FILTERED",
-      "token": "DIH",
-      "mint": "3AYshf6BKsM9HVxbPk6vZ3QyWC5H4zTetAANynLrDmmZ",
-      "reason": "universe: liquidity $14,377 < $40,000; 5m volume $20,729 < $25,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T050224"
-    },
-    {
-      "ts": "2026-11-27T05:02:28-08:00",
-      "kind": "FILTERED",
-      "token": "\u30da\u30f3\u30ae\u30f3",
-      "mint": "FHnteWvaySjQRTYezkLaXdZNyXQh79vmNDbHdaYqTLF2",
-      "reason": "universe: liquidity $9 < $40,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T050224"
-    },
-    {
-      "ts": "2026-11-27T05:02:28-08:00",
-      "kind": "FILTERED",
-      "token": "PARK",
-      "mint": "EUT1zz6j6mnxP74AkCjATBPcKnGobu1ZHUE1WR26ME2t",
-      "reason": "universe: liquidity $14,678 < $40,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T050224"
-    },
-    {
-      "ts": "2026-11-27T05:02:28-08:00",
-      "kind": "FILTERED",
-      "token": "WOOPY",
-      "mint": "BAfutoe1A68iTghRuxGmZa7vVD3ZM2YajRUxWkAjzEu",
-      "reason": "universe: liquidity $3 < $40,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T050224"
-    },
-    {
-      "ts": "2026-11-27T05:02:28-08:00",
-      "kind": "FILTERED",
-      "token": "Zhaki",
-      "mint": "A3s9G9SB4C7zyzU59NJ3pxdotDx4KqFAUQxgK388zJWi",
-      "reason": "universe: liquidity $3 < $40,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T050224"
-    },
-    {
-      "ts": "2026-11-27T05:02:28-08:00",
-      "kind": "FILTERED",
-      "token": "BLOCK0",
-      "mint": "5nHKiFa7wUspocevSukBAiuBSKqvCg4LU5dvrVNGDSJR",
-      "reason": "universe: liquidity $5 < $40,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T050224"
-    },
-    {
-      "ts": "2026-11-27T05:02:28-08:00",
-      "kind": "FILTERED",
-      "token": "Kibo",
-      "mint": "3tET16vVZuMZADrq1ShWkJr9bhN1N3uJshbqk3PuqZuA",
-      "reason": "universe: 5m volume $1,807 < $25,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T050224"
-    },
-    {
-      "ts": "2026-11-27T05:02:28-08:00",
-      "kind": "FILTERED",
-      "token": "COPYKAT",
-      "mint": "GKGuUJCsSDKbVpLtRes86T8fPfPRtHcuTCpBfiha1L4P",
-      "reason": "universe: liquidity $5 < $40,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T050224"
-    },
-    {
-      "ts": "2026-11-27T05:02:28-08:00",
-      "kind": "FILTERED",
-      "token": "DIH",
-      "mint": "9WmoBKgjrZBBGEiAst2JWr7a8hs6a8n2koXnyFza2XED",
-      "reason": "universe: liquidity $2 < $40,000",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Launch Radar",
-      "run_id": "20261127T050224"
-    },
-    {
-      "ts": "2026-11-27T05:02:41-08:00",
-      "kind": "FILTERED",
-      "token": "RHINODINOS",
-      "mint": "94XbMFwQui5q7mmgGh5gMatUhwkwAidkkReRskmkNVS",
-      "reason": "RUG FAIL: LP unlocked: only 0.0% burned/locked",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Analyst",
-      "run_id": "20261127T050224",
-      "extra": {
-        "signals": [
-          "volume_spike"
-        ]
-      }
-    },
-    {
-      "ts": "2026-11-27T05:02:41-08:00",
-      "kind": "FILTERED",
-      "token": "MUMU",
-      "mint": "BLpUbUGakZkLWASfRuHTHe7cjZe8LLxikmuCvFgrReHr",
-      "reason": "RUG FAIL: LP unlocked: only 0.0% burned/locked",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Analyst",
-      "run_id": "20261127T050224",
-      "extra": {
-        "signals": [
-          "holder_growth"
-        ]
-      }
-    },
-    {
-      "ts": "2026-11-27T05:02:41-08:00",
-      "kind": "FILTERED",
-      "token": "boing",
-      "mint": "9iT4yxQ59TxFgutYD4jE7zXJXvw6bWTXS9W86WE3U6tj",
-      "reason": "RUG FAIL: LP unlocked: only 0.0% burned/locked",
-      "size_sol": null,
-      "fill_price_usd": null,
-      "pnl_sol": null,
-      "pnl_pct": null,
-      "agent": "Analyst",
-      "run_id": "20261127T050224",
-      "extra": {
-        "signals": [
-          "volume_spike"
-        ]
-      }
-    },
     {
       "ts": "2026-11-27T05:02:41-08:00",
       "kind": "FILTERED",
@@ -6510,9 +6120,424 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
         "tx": "2hEyzXNbqNXuqVB1TcgXMYZ5mBTMNDySjxejeMEnGH5TiBqTSb3RUrgN54FxJypiMnDyUqJgZ1GheQjtAdVo6hHS",
         "solscan": "https://solscan.io/tx/2hEyzXNbqNXuqVB1TcgXMYZ5mBTMNDySjxejeMEnGH5TiBqTSb3RUrgN54FxJypiMnDyUqJgZ1GheQjtAdVo6hHS"
       }
+    },
+    {
+      "ts": "2026-11-27T08:30:27-08:00",
+      "kind": "FILTERED",
+      "token": "RAPEKING",
+      "mint": "64wYHd7DBQ53YUgBK3zeiFHZJ15q85pYiS5xjZ19pump",
+      "reason": "universe: liquidity $17,082 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083022"
+    },
+    {
+      "ts": "2026-11-27T08:30:27-08:00",
+      "kind": "FILTERED",
+      "token": "thing",
+      "mint": "A6jTfxSnjhTxuCmPKLyL675MPGm6fc2AAhjtAa9kpump",
+      "reason": "universe: liquidity $4,529 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083022"
+    },
+    {
+      "ts": "2026-11-27T08:30:27-08:00",
+      "kind": "FILTERED",
+      "token": "things",
+      "mint": "HcoFqrrZCmMUCNYzG9ez2CwrUPc77DWvt5agkL5V4t2D",
+      "reason": "universe: liquidity $0 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083022"
+    },
+    {
+      "ts": "2026-11-27T08:30:27-08:00",
+      "kind": "FILTERED",
+      "token": "BARNEY",
+      "mint": "A5b3nedKKP7kpPVSeSm2vH2SNFMPxKNjiQSYqn73mnqV",
+      "reason": "universe: liquidity $0 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083022"
+    },
+    {
+      "ts": "2026-11-27T08:30:27-08:00",
+      "kind": "FILTERED",
+      "token": "SpaceXCoin",
+      "mint": "HCVkcc4vXs9GagrSwSrDRAqMBJLLdiyk4tNqpECPLQpt",
+      "reason": "universe: liquidity $2 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083022"
+    },
+    {
+      "ts": "2026-11-27T08:30:27-08:00",
+      "kind": "FILTERED",
+      "token": "DLOH",
+      "mint": "DzNk9u8Jzn8FJtv9ghceFN8VJtcSYwxG6RJA94sbKGjC",
+      "reason": "universe: liquidity $11,487 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083022"
+    },
+    {
+      "ts": "2026-11-27T08:30:27-08:00",
+      "kind": "FILTERED",
+      "token": "ISHI",
+      "mint": "hcKkRpQz9HeKHwmRNo11D2hjEMipSzjWaHCFYNUpump",
+      "reason": "universe: liquidity $0 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083022"
+    },
+    {
+      "ts": "2026-11-27T08:30:27-08:00",
+      "kind": "FILTERED",
+      "token": "Franklin",
+      "mint": "FkWN6RYbRBUHZseUKNUkLz4oJc1ZhUqB45bkHpirZcyW",
+      "reason": "universe: liquidity $0 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083022"
+    },
+    {
+      "ts": "2026-11-27T08:30:38-08:00",
+      "kind": "FILTERED",
+      "token": "OFFICIAL",
+      "mint": "5sR4nPSN4Gb7V1rS3cHntEApfc6QLY5kwKqcWtpJ8oRZ",
+      "reason": "universe: 198 holders < 300",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Holder Map",
+      "run_id": "20261127T083022"
+    },
+    {
+      "ts": "2026-11-27T08:30:57-08:00",
+      "kind": "FILTERED",
+      "token": "DIHBALL",
+      "mint": "99CQuNiF6WN44xyKqPP9N41x5R9Uu8MkTM9CK3Rzpump",
+      "reason": "RUG FAIL: top-10 holders 53.5% \u2265 35%",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Analyst",
+      "run_id": "20261127T083022",
+      "extra": {
+        "signals": [
+          "buy_pressure"
+        ]
+      }
+    },
+    {
+      "ts": "2026-11-27T08:30:57-08:00",
+      "kind": "FILTERED",
+      "token": "thing",
+      "mint": "29Pj7DFr1qmvbCHutoPK4eFXBEDJg6xBN9BpxdxsjeFU",
+      "reason": "RUG FAIL: LP unlocked: only 0.0% burned/locked",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Analyst",
+      "run_id": "20261127T083022",
+      "extra": {
+        "signals": [
+          "volume_spike"
+        ]
+      }
+    },
+    {
+      "ts": "2026-11-27T08:30:57-08:00",
+      "kind": "FILTERED",
+      "token": "Banc",
+      "mint": "2fiyvfrkxGUs6FRDNenGQAtWWPMd74qk36yBBw4YL3iy",
+      "reason": "RUG FAIL: LP unlocked: only 0.0% burned/locked",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Analyst",
+      "run_id": "20261127T083022",
+      "extra": {
+        "signals": [
+          "volume_spike"
+        ]
+      }
+    },
+    {
+      "ts": "2026-11-27T08:30:57-08:00",
+      "kind": "FILTERED",
+      "token": "Fireball",
+      "mint": "B9wbjDJ4FbHMsZmoXAkJSTAwuePaJUKbySvnK5zApump",
+      "reason": "momentum: pump top: +32% in 5m > +25%",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Analyst",
+      "run_id": "20261127T083022"
+    },
+    {
+      "ts": "2026-11-27T08:31:22-08:00",
+      "kind": "FILTERED",
+      "token": "thing",
+      "mint": "29Pj7DFr1qmvbCHutoPK4eFXBEDJg6xBN9BpxdxsjeFU",
+      "reason": "universe: liquidity $6 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:22-08:00",
+      "kind": "FILTERED",
+      "token": "KITT",
+      "mint": "F5LxbqJxAMrvfxLbqPckErmqNyiPzDJMUXnX8vrhpump",
+      "reason": "universe: liquidity $24,139 < $25,000; 5m volume $7,944 < $8,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:22-08:00",
+      "kind": "FILTERED",
+      "token": "Egg",
+      "mint": "EVASJxNTfg5P8qrj3crg11pQNDva6fqzfHavZ9NLpump",
+      "reason": "universe: liquidity $14,800 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:22-08:00",
+      "kind": "FILTERED",
+      "token": "FRANKLIN",
+      "mint": "7GNuPjnAymPGNoPsZp1TZZnzf3PW8WyUpKncevh5R5jw",
+      "reason": "universe: liquidity $17,377 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:22-08:00",
+      "kind": "FILTERED",
+      "token": "Kuwgho",
+      "mint": "Ew41aXoWXW2RXda9sWHWPjgaZWNsbrw5DbK7XLtkbonk",
+      "reason": "universe: 5m volume $1,957 < $8,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:22-08:00",
+      "kind": "FILTERED",
+      "token": "67",
+      "mint": "8ob6WB1VTJasK2r6EjzbMyJ5Zv8bd6jDsTtahvxunyLV",
+      "reason": "universe: liquidity $0 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:22-08:00",
+      "kind": "FILTERED",
+      "token": "NVIDIA",
+      "mint": "6FADqyBT7SLFbpAHWnhGNThC7ouvzu7BXiYayvMn9Ryk",
+      "reason": "universe: liquidity $1 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:22-08:00",
+      "kind": "FILTERED",
+      "token": "Chip",
+      "mint": "7mJkjf2mFqgZHFa9zZ95v4fv9tqNcshV9N9TujwmwTCk",
+      "reason": "universe: liquidity $0 < $25,000; 5m volume $4,380 < $8,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:22-08:00",
+      "kind": "FILTERED",
+      "token": "BARNEY",
+      "mint": "EXKuKwYsb2HJHreBKoq7WX2gz9mG5fK9YN1tXncZ1MFB",
+      "reason": "universe: liquidity $1 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:22-08:00",
+      "kind": "FILTERED",
+      "token": "QCAT",
+      "mint": "54VQ38q4ceBXruEhHeMKWzdkkLpPQ7Et4TRbcamQpump",
+      "reason": "universe: liquidity $0 < $25,000; 5m volume $5,232 < $8,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:22-08:00",
+      "kind": "FILTERED",
+      "token": "JIMMY",
+      "mint": "9vhHXKneNhg1FvbVszkDcHGUuMk7YwcoFHvvnBZspump",
+      "reason": "universe: liquidity $0 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:22-08:00",
+      "kind": "FILTERED",
+      "token": "BARNEY",
+      "mint": "3FCxuQBEmUpRHrXx6rZZw1iFUW6ZhtepSNhUGxtguyj9",
+      "reason": "universe: liquidity $1 < $25,000",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:22-08:00",
+      "kind": "FILTERED",
+      "token": "V100",
+      "mint": "7CAimwwK6NHFpN5bkBfktasj1f45z8nAmCvWi3fEws3u",
+      "reason": "main pair is 212.3h old (not launched/migrated in last 6h)",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Launch Radar",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:29-08:00",
+      "kind": "FILTERED",
+      "token": "HOLD",
+      "mint": "14ftcCuwkDHqQyQVogmgpTHoeP42pqpm9YqMRwVEUQRR",
+      "reason": "universe: 61 holders < 300",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Holder Map",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:29-08:00",
+      "kind": "FILTERED",
+      "token": "NBA",
+      "mint": "AjucUKL3i8wh7SvFL9h5cZbWkd3M9JibLkdvRJKppump",
+      "reason": "universe: 288 holders < 300",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Holder Map",
+      "run_id": "20261127T083118"
+    },
+    {
+      "ts": "2026-11-27T08:31:41-08:00",
+      "kind": "FILTERED",
+      "token": "GROK",
+      "mint": "AEKTrzs2uAXeinZz9nDPzKHRCUh9U3ixvn9hznZHfRmE",
+      "reason": "RUG FAIL: LP unlocked: only 0.0% burned/locked",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Analyst",
+      "run_id": "20261127T083118",
+      "extra": {
+        "signals": [
+          "holder_growth"
+        ]
+      }
+    },
+    {
+      "ts": "2026-11-27T08:31:41-08:00",
+      "kind": "FILTERED",
+      "token": "Franklin",
+      "mint": "BjWxXNFnyQM1oLbZgzDb8Q9KNPLtNJC8u1R8tCf847PT",
+      "reason": "RUG FAIL: LP unlocked: only 0.0% burned/locked",
+      "size_sol": null,
+      "fill_price_usd": null,
+      "pnl_sol": null,
+      "pnl_pct": null,
+      "agent": "Analyst",
+      "run_id": "20261127T083118",
+      "extra": {
+        "signals": [
+          "volume_spike"
+        ]
+      }
     }
   ],
-  "nightLogCount": 1720,
+  "nightLogCount": 1750,
   "stats": {
     "since": "2026-11-26T18:00:00-08:00",
     "trades": 0,
@@ -6527,9 +6552,9 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
   "session": {
     "start": "2026-11-26T18:00:00-08:00",
     "sol": 0.322635852,
-    "equity_sol": 0.380142,
+    "equity_sol": 0.375512,
     "peak_equity_sol": 0.385144,
-    "drawdown_pct": -1.3,
+    "drawdown_pct": -2.5,
     "paused": false,
     "loss_streak": 2,
     "halved": true,
@@ -6539,12 +6564,12 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
   "walletSnap": {
     "address": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
     "sol": 0.322636,
-    "sol_usd": 71.93,
-    "sol_value_usd": 23.21,
-    "token_value_usd": 4.14,
-    "equity_sol": 0.380142,
-    "equity_usd": 27.34,
-    "source": "record (--wallet-sol)",
+    "sol_usd": 72.068,
+    "sol_value_usd": 23.25,
+    "token_value_usd": 3.81,
+    "equity_sol": 0.375512,
+    "equity_usd": 27.06,
+    "source": "cli --sol",
     "solscan": "https://solscan.io/account/56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq"
   },
   "orders": [],
@@ -6552,8 +6577,8 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
     {
       "token": "Elfball",
       "mint": "92tFJ6CvgCuoS1c34Qy5g3RPVRDmLyHtknMnuoYqpump",
-      "liq_usd": 37732.22,
-      "vol_m5": 18468.5,
+      "liq_usd": 37782.89,
+      "vol_m5": 18457.9,
       "signals": {
         "volume_spike": false,
         "buy_pressure": true,
@@ -6565,10 +6590,42 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "rug_fails": []
     },
     {
+      "token": "DIHBALL",
+      "mint": "99CQuNiF6WN44xyKqPP9N41x5R9Uu8MkTM9CK3Rzpump",
+      "liq_usd": 27746.94,
+      "vol_m5": 12970.42,
+      "signals": {
+        "volume_spike": false,
+        "buy_pressure": true,
+        "holder_growth": false,
+        "smart_money": false,
+        "kol_buy": false
+      },
+      "rug": "FAIL",
+      "rug_fails": [
+        "top-10 holders 52.9% \u2265 35%"
+      ]
+    },
+    {
+      "token": "Fireball",
+      "mint": "B9wbjDJ4FbHMsZmoXAkJSTAwuePaJUKbySvnK5zApump",
+      "liq_usd": 60349.27,
+      "vol_m5": 19218.55,
+      "signals": {
+        "volume_spike": false,
+        "buy_pressure": true,
+        "holder_growth": false,
+        "smart_money": false,
+        "kol_buy": false
+      },
+      "rug": "PASS",
+      "rug_fails": []
+    },
+    {
       "token": "Snowball",
       "mint": "Bh8aLAuvFersXCaYza64CPe2suPyzBXNKG2rXciHB7dy",
-      "liq_usd": 33154.25,
-      "vol_m5": 11546.88,
+      "liq_usd": 35028.69,
+      "vol_m5": 10214.08,
       "signals": {
         "volume_spike": false,
         "buy_pressure": true,
@@ -6582,10 +6639,27 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       ]
     },
     {
+      "token": "Banc",
+      "mint": "2fiyvfrkxGUs6FRDNenGQAtWWPMd74qk36yBBw4YL3iy",
+      "liq_usd": 45592.81,
+      "vol_m5": 211812.66,
+      "signals": {
+        "volume_spike": true,
+        "buy_pressure": false,
+        "holder_growth": false,
+        "smart_money": false,
+        "kol_buy": false
+      },
+      "rug": "FAIL",
+      "rug_fails": [
+        "LP unlocked: only 0.0% burned/locked"
+      ]
+    },
+    {
       "token": "Meme",
       "mint": "CV1NPi8L2PSYMfALBh7GCfUwELZzG3DrLUUjCkeapump",
-      "liq_usd": 35635.66,
-      "vol_m5": 37564.2,
+      "liq_usd": 39228.58,
+      "vol_m5": 29487.76,
       "signals": {
         "volume_spike": false,
         "buy_pressure": true,
@@ -6599,8 +6673,8 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
     {
       "token": "WINSTON",
       "mint": "SixkZxWcGdYFShQRWYYVGqgrQ2aZSx4TYC16Zfv4etP",
-      "liq_usd": 81151.22,
-      "vol_m5": 38894.57,
+      "liq_usd": 80856.21,
+      "vol_m5": 34846.73,
       "signals": {
         "volume_spike": false,
         "buy_pressure": false,
@@ -6614,10 +6688,28 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       ]
     },
     {
+      "token": "GAIB",
+      "mint": "2JjmRdQ71UzAUkTCGsFXNEBdqYBAbh9LMzSb8eHnzYJT",
+      "liq_usd": 168690.82,
+      "vol_m5": 235886.14,
+      "signals": {
+        "volume_spike": false,
+        "buy_pressure": false,
+        "holder_growth": false,
+        "smart_money": false,
+        "kol_buy": false
+      },
+      "rug": "FAIL",
+      "rug_fails": [
+        "dev wallet 25.28% \u2265 5%",
+        "LP unlocked: only 0.0% burned/locked"
+      ]
+    },
+    {
       "token": "WINSTON",
       "mint": "2Zm998MZWq5X1Mhy62etDn3NhBZNhYagkFgCg81PLRTL",
-      "liq_usd": 36423.62,
-      "vol_m5": 10654.33,
+      "liq_usd": 36461.38,
+      "vol_m5": 9834.1,
       "signals": {
         "volume_spike": false,
         "buy_pressure": true,
@@ -6631,13 +6723,47 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       ]
     },
     {
-      "token": "Fireball",
-      "mint": "B9wbjDJ4FbHMsZmoXAkJSTAwuePaJUKbySvnK5zApump",
-      "liq_usd": 61777.24,
-      "vol_m5": 15426.1,
+      "token": "GROK",
+      "mint": "AEKTrzs2uAXeinZz9nDPzKHRCUh9U3ixvn9hznZHfRmE",
+      "liq_usd": 162889.08,
+      "vol_m5": 509583.28,
       "signals": {
         "volume_spike": false,
-        "buy_pressure": true,
+        "buy_pressure": false,
+        "holder_growth": true,
+        "smart_money": false,
+        "kol_buy": false
+      },
+      "rug": "FAIL",
+      "rug_fails": [
+        "LP unlocked: only 0.0% burned/locked"
+      ]
+    },
+    {
+      "token": "Franklin",
+      "mint": "BjWxXNFnyQM1oLbZgzDb8Q9KNPLtNJC8u1R8tCf847PT",
+      "liq_usd": 36883.46,
+      "vol_m5": 117845.88,
+      "signals": {
+        "volume_spike": true,
+        "buy_pressure": false,
+        "holder_growth": false,
+        "smart_money": false,
+        "kol_buy": false
+      },
+      "rug": "FAIL",
+      "rug_fails": [
+        "LP unlocked: only 0.0% burned/locked"
+      ]
+    },
+    {
+      "token": "WINSTON",
+      "mint": "7Y2CVbnqZRvR5RUvEJ9RQ73fZEfv7ybNcysytAepump",
+      "liq_usd": 34581.16,
+      "vol_m5": 14653.37,
+      "signals": {
+        "volume_spike": false,
+        "buy_pressure": false,
         "holder_growth": false,
         "smart_money": false,
         "kol_buy": false
@@ -6646,7 +6772,7 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "rug_fails": []
     }
   ],
-  "generatedAt": "2026-11-27T08:29:57-08:00",
+  "generatedAt": "2026-11-27T08:31:43-08:00",
   "tz": "America/Los_Angeles",
   "wallet": "56sJvDScdaBvqEmPG3B9DN95vaJEnzzqFgtmSEmvxrq",
   "walletSolHint": 0.322635852,
@@ -6678,7 +6804,7 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "liq_at_entry_usd": 26781.16,
       "dev_balance_baseline": 0.0,
       "version": "overnight-v2",
-      "peak_pnl_pct": -15.74
+      "peak_pnl_pct": -10.27
     },
     {
       "token": "Fireball",
@@ -6706,7 +6832,8 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       ],
       "liq_at_entry_usd": 61777.24,
       "dev_balance_baseline": 0.0,
-      "version": "overnight-v2"
+      "version": "overnight-v2",
+      "peak_pnl_pct": -14.74
     }
   ],
   "closed": [
@@ -20646,6 +20773,42 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "token_value_usd": 4.14,
       "equity_sol": 0.380142,
       "equity_usd": 27.34
+    },
+    {
+      "ts": "2026-11-27T08:30:22-08:00",
+      "sol": 0.322636,
+      "sol_usd": 71.98,
+      "token_value_sol": 0.055165,
+      "token_value_usd": 3.97,
+      "equity_sol": 0.377801,
+      "equity_usd": 27.19
+    },
+    {
+      "ts": "2026-11-27T08:30:22-08:00",
+      "sol": 0.322636,
+      "sol_usd": 71.98,
+      "token_value_sol": 0.055165,
+      "token_value_usd": 3.97,
+      "equity_sol": 0.377801,
+      "equity_usd": 27.19
+    },
+    {
+      "ts": "2026-11-27T08:31:16-08:00",
+      "sol": 0.322636,
+      "sol_usd": 72.068,
+      "token_value_sol": 0.052877,
+      "token_value_usd": 3.81,
+      "equity_sol": 0.375512,
+      "equity_usd": 27.06
+    },
+    {
+      "ts": "2026-11-27T08:31:18-08:00",
+      "sol": 0.322636,
+      "sol_usd": 72.068,
+      "token_value_sol": 0.052877,
+      "token_value_usd": 3.81,
+      "equity_sol": 0.375512,
+      "equity_usd": 27.06
     }
   ],
   "tokenAccounts": {
@@ -20730,237 +20893,237 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
     }
   ],
   "lastDeskRun": {
-    "ts": "2026-11-27T08:29:57-08:00",
-    "command": "record-buy",
-    "scan_id": "20261127T082957",
-    "tokensChecked": 55,
+    "ts": "2026-11-27T08:31:41-08:00",
+    "command": "scan",
+    "scan_id": "20261127T083118",
+    "tokensChecked": 68,
     "openPositions": 2,
     "pipeline": [],
     "rejections": [
       {
         "agent": "analyst",
-        "mint": "2Zm998MZWq5X1Mhy62etDn3NhBZNhYagkFgCg81PLRTL",
-        "symbol": "WINSTON",
+        "mint": "BjWxXNFnyQM1oLbZgzDb8Q9KNPLtNJC8u1R8tCf847PT",
+        "symbol": "Franklin",
         "reasons": [
           "RUG FAIL: LP unlocked: only 0.0% burned/locked"
         ],
-        "ts": "2026-11-27T08:28:33-08:00"
+        "ts": "2026-11-27T08:31:41-08:00"
       },
       {
         "agent": "analyst",
-        "mint": "SixkZxWcGdYFShQRWYYVGqgrQ2aZSx4TYC16Zfv4etP",
-        "symbol": "WINSTON",
+        "mint": "AEKTrzs2uAXeinZz9nDPzKHRCUh9U3ixvn9hznZHfRmE",
+        "symbol": "GROK",
         "reasons": [
           "RUG FAIL: LP unlocked: only 0.0% burned/locked"
         ],
-        "ts": "2026-11-27T08:28:33-08:00"
+        "ts": "2026-11-27T08:31:41-08:00"
       },
       {
-        "agent": "analyst",
-        "mint": "CV1NPi8L2PSYMfALBh7GCfUwELZzG3DrLUUjCkeapump",
-        "symbol": "Meme",
+        "agent": "holder_map",
+        "mint": "AjucUKL3i8wh7SvFL9h5cZbWkd3M9JibLkdvRJKppump",
+        "symbol": "NBA",
         "reasons": [
-          "no chasing: +451% in 1h with no 10% pullback"
+          "universe: 288 holders < 300"
         ],
-        "ts": "2026-11-27T08:28:33-08:00"
+        "ts": "2026-11-27T08:31:29-08:00"
       },
       {
-        "agent": "analyst",
-        "mint": "Bh8aLAuvFersXCaYza64CPe2suPyzBXNKG2rXciHB7dy",
-        "symbol": "Snowball",
+        "agent": "holder_map",
+        "mint": "14ftcCuwkDHqQyQVogmgpTHoeP42pqpm9YqMRwVEUQRR",
+        "symbol": "HOLD",
         "reasons": [
-          "RUG FAIL: LP unlocked: only 0.0% burned/locked"
+          "universe: 61 holders < 300"
         ],
-        "ts": "2026-11-27T08:28:33-08:00"
-      },
-      {
-        "agent": "analyst",
-        "mint": "92tFJ6CvgCuoS1c34Qy5g3RPVRDmLyHtknMnuoYqpump",
-        "symbol": "Elfball",
-        "reasons": [
-          "momentum: pump top: +782% in 1h > +150%"
-        ],
-        "ts": "2026-11-27T08:28:33-08:00"
+        "ts": "2026-11-27T08:31:29-08:00"
       },
       {
         "agent": "launch_radar",
-        "mint": "78ujKN8GW5jvEp1EqkvyoedgGzmBGJsmm9AnK1N7boNm",
-        "symbol": "WINTER",
+        "mint": "7CAimwwK6NHFpN5bkBfktasj1f45z8nAmCvWi3fEws3u",
+        "symbol": "V100",
         "reasons": [
-          "universe: liquidity $14,796 < $25,000"
+          "main pair is 212.3h old (not launched/migrated in last 6h)"
         ],
-        "ts": "2026-11-27T08:28:00-08:00"
+        "ts": "2026-11-27T08:31:22-08:00"
       },
       {
         "agent": "launch_radar",
-        "mint": "31HcM5ChifMziQHpm4J5K8NrdhBcWNBLcSfdWPfGpump",
-        "symbol": "StopAI",
+        "mint": "3FCxuQBEmUpRHrXx6rZZw1iFUW6ZhtepSNhUGxtguyj9",
+        "symbol": "BARNEY",
+        "reasons": [
+          "universe: liquidity $1 < $25,000"
+        ],
+        "ts": "2026-11-27T08:31:22-08:00"
+      },
+      {
+        "agent": "launch_radar",
+        "mint": "9vhHXKneNhg1FvbVszkDcHGUuMk7YwcoFHvvnBZspump",
+        "symbol": "JIMMY",
         "reasons": [
           "universe: liquidity $0 < $25,000"
         ],
-        "ts": "2026-11-27T08:28:00-08:00"
+        "ts": "2026-11-27T08:31:22-08:00"
       },
       {
         "agent": "launch_radar",
-        "mint": "BNJZjMESwyyTYvrAJzps8ycanxUEGn5nJtY5zR1kpump",
-        "symbol": "EGG",
+        "mint": "54VQ38q4ceBXruEhHeMKWzdkkLpPQ7Et4TRbcamQpump",
+        "symbol": "QCAT",
         "reasons": [
-          "universe: liquidity $0 < $25,000; 5m volume $4,270 < $8,000"
+          "universe: liquidity $0 < $25,000; 5m volume $5,232 < $8,000"
         ],
-        "ts": "2026-11-27T08:28:00-08:00"
+        "ts": "2026-11-27T08:31:22-08:00"
       },
       {
         "agent": "launch_radar",
-        "mint": "AVB4qSE2ZLQc9RC7QKzDJ2Kj623Jf2TUmafSSwiV3N8G",
-        "symbol": "BI",
+        "mint": "EXKuKwYsb2HJHreBKoq7WX2gz9mG5fK9YN1tXncZ1MFB",
+        "symbol": "BARNEY",
         "reasons": [
-          "universe: liquidity $16,498 < $25,000"
+          "universe: liquidity $1 < $25,000"
         ],
-        "ts": "2026-11-27T08:28:00-08:00"
+        "ts": "2026-11-27T08:31:22-08:00"
       },
       {
         "agent": "launch_radar",
-        "mint": "2sFVRUTkmSoFkzieTTrM7LnQkbdyBkZZtv6S4WBSRDHo",
-        "symbol": "CashMoji",
+        "mint": "7mJkjf2mFqgZHFa9zZ95v4fv9tqNcshV9N9TujwmwTCk",
+        "symbol": "Chip",
         "reasons": [
-          "universe: liquidity $0 < $25,000; 5m volume $5,618 < $8,000"
+          "universe: liquidity $0 < $25,000; 5m volume $4,380 < $8,000"
         ],
-        "ts": "2026-11-27T08:28:00-08:00"
+        "ts": "2026-11-27T08:31:22-08:00"
       },
       {
         "agent": "launch_radar",
-        "mint": "9tLHqm96bd6N91XGMhAMmp5JXZLgsFjezsETis4Zpump",
-        "symbol": "BI",
+        "mint": "6FADqyBT7SLFbpAHWnhGNThC7ouvzu7BXiYayvMn9Ryk",
+        "symbol": "NVIDIA",
+        "reasons": [
+          "universe: liquidity $1 < $25,000"
+        ],
+        "ts": "2026-11-27T08:31:22-08:00"
+      },
+      {
+        "agent": "launch_radar",
+        "mint": "8ob6WB1VTJasK2r6EjzbMyJ5Zv8bd6jDsTtahvxunyLV",
+        "symbol": "67",
         "reasons": [
           "universe: liquidity $0 < $25,000"
         ],
-        "ts": "2026-11-27T08:28:00-08:00"
+        "ts": "2026-11-27T08:31:22-08:00"
       },
       {
         "agent": "launch_radar",
-        "mint": "Dg4CfLpYArMXv8sxy6bcLB5KyX19xay3PprJJdXPRVkY",
-        "symbol": "angel",
+        "mint": "Ew41aXoWXW2RXda9sWHWPjgaZWNsbrw5DbK7XLtkbonk",
+        "symbol": "Kuwgho",
         "reasons": [
-          "universe: liquidity $0 < $25,000; 5m volume $6,685 < $8,000"
+          "universe: 5m volume $1,957 < $8,000"
         ],
-        "ts": "2026-11-27T08:28:00-08:00"
+        "ts": "2026-11-27T08:31:22-08:00"
       },
       {
         "agent": "launch_radar",
-        "mint": "DYaRHqgkY9BJfmyeFgqAPpnNtKz1SyUkvPR7y5DSNRSE",
+        "mint": "7GNuPjnAymPGNoPsZp1TZZnzf3PW8WyUpKncevh5R5jw",
         "symbol": "FRANKLIN",
         "reasons": [
-          "universe: liquidity $3 < $25,000"
+          "universe: liquidity $17,377 < $25,000"
         ],
-        "ts": "2026-11-27T08:28:00-08:00"
+        "ts": "2026-11-27T08:31:22-08:00"
       },
       {
         "agent": "launch_radar",
-        "mint": "7Y2CVbnqZRvR5RUvEJ9RQ73fZEfv7ybNcysytAepump",
-        "symbol": "WINSTON",
+        "mint": "EVASJxNTfg5P8qrj3crg11pQNDva6fqzfHavZ9NLpump",
+        "symbol": "Egg",
         "reasons": [
-          "universe: 5m volume $7,758 < $8,000"
+          "universe: liquidity $14,800 < $25,000"
         ],
-        "ts": "2026-11-27T08:28:00-08:00"
+        "ts": "2026-11-27T08:31:22-08:00"
       },
       {
         "agent": "launch_radar",
         "mint": "F5LxbqJxAMrvfxLbqPckErmqNyiPzDJMUXnX8vrhpump",
         "symbol": "KITT",
         "reasons": [
-          "universe: liquidity $24,775 < $25,000"
+          "universe: liquidity $24,139 < $25,000; 5m volume $7,944 < $8,000"
         ],
-        "ts": "2026-11-27T08:28:00-08:00"
+        "ts": "2026-11-27T08:31:22-08:00"
       },
       {
         "agent": "launch_radar",
-        "mint": "GKbHpSCfvSkRouEZ3kKi12JHpKzE8ycbQVMexmJNUpvN",
-        "symbol": "Frongus",
+        "mint": "29Pj7DFr1qmvbCHutoPK4eFXBEDJg6xBN9BpxdxsjeFU",
+        "symbol": "thing",
         "reasons": [
-          "universe: liquidity $2 < $25,000"
+          "universe: liquidity $6 < $25,000"
         ],
-        "ts": "2026-11-27T08:28:00-08:00"
-      },
-      {
-        "agent": "launch_radar",
-        "mint": "A797dU9N6dCE6mx8Z9EpHEmTc1ez1Cg4GSRRzhvypump",
-        "symbol": "Optimus",
-        "reasons": [
-          "universe: liquidity $8,204 < $25,000"
-        ],
-        "ts": "2026-11-27T08:28:00-08:00"
+        "ts": "2026-11-27T08:31:22-08:00"
       },
       {
         "agent": "analyst",
-        "mint": "7Y2CVbnqZRvR5RUvEJ9RQ73fZEfv7ybNcysytAepump",
-        "symbol": "WINSTON",
+        "mint": "B9wbjDJ4FbHMsZmoXAkJSTAwuePaJUKbySvnK5zApump",
+        "symbol": "Fireball",
         "reasons": [
-          "rug PASS but only 0 scanner signal(s) (none); need 1"
+          "momentum: pump top: +32% in 5m > +25%"
         ],
-        "ts": "2026-11-27T08:20:05-08:00"
+        "ts": "2026-11-27T08:30:57-08:00"
       },
       {
         "agent": "analyst",
-        "mint": "A7bvC8F1xoH7KmghchaxGUh2FzGWmPgrWFSfKavrHa7h",
-        "symbol": "INU",
+        "mint": "2fiyvfrkxGUs6FRDNenGQAtWWPMd74qk36yBBw4YL3iy",
+        "symbol": "Banc",
         "reasons": [
           "RUG FAIL: LP unlocked: only 0.0% burned/locked"
         ],
-        "ts": "2026-11-27T08:20:05-08:00"
+        "ts": "2026-11-27T08:30:57-08:00"
       },
       {
         "agent": "analyst",
-        "mint": "CV1NPi8L2PSYMfALBh7GCfUwELZzG3DrLUUjCkeapump",
-        "symbol": "Meme",
-        "reasons": [
-          "momentum: pump top: +58% in 5m > +25%; pump top: +253% in 1h > +150%"
-        ],
-        "ts": "2026-11-27T08:20:05-08:00"
-      },
-      {
-        "agent": "analyst",
-        "mint": "CE1azAUuGyx3KwiH72zk5uL1Feo2o2hes6HmGsSvuZRS",
-        "symbol": "BCI",
+        "mint": "29Pj7DFr1qmvbCHutoPK4eFXBEDJg6xBN9BpxdxsjeFU",
+        "symbol": "thing",
         "reasons": [
           "RUG FAIL: LP unlocked: only 0.0% burned/locked"
         ],
-        "ts": "2026-11-27T08:20:05-08:00"
+        "ts": "2026-11-27T08:30:57-08:00"
+      },
+      {
+        "agent": "analyst",
+        "mint": "99CQuNiF6WN44xyKqPP9N41x5R9Uu8MkTM9CK3Rzpump",
+        "symbol": "DIHBALL",
+        "reasons": [
+          "RUG FAIL: top-10 holders 53.5% \u2265 35%"
+        ],
+        "ts": "2026-11-27T08:30:57-08:00"
       },
       {
         "agent": "holder_map",
-        "mint": "9bpjmzNxu9XDRnwrJYkdpKF6oFbkVz2LYmqR8oWLj2yj",
-        "symbol": "RAPEKING",
+        "mint": "5sR4nPSN4Gb7V1rS3cHntEApfc6QLY5kwKqcWtpJ8oRZ",
+        "symbol": "OFFICIAL",
         "reasons": [
-          "universe: 102 holders < 300"
+          "universe: 198 holders < 300"
         ],
-        "ts": "2026-11-27T08:19:45-08:00"
+        "ts": "2026-11-27T08:30:38-08:00"
       },
       {
         "agent": "launch_radar",
-        "mint": "FKYtyKJ9u7Ffy8FPZ32Gbm4nrgvJYGrdXshpm8yDFsdz",
-        "symbol": "RAPEKING",
+        "mint": "FkWN6RYbRBUHZseUKNUkLz4oJc1ZhUqB45bkHpirZcyW",
+        "symbol": "Franklin",
         "reasons": [
           "universe: liquidity $0 < $25,000"
         ],
-        "ts": "2026-11-27T08:19:39-08:00"
+        "ts": "2026-11-27T08:30:27-08:00"
       },
       {
         "agent": "launch_radar",
-        "mint": "5qjFEqBrk61qGYjW8BPvy3Mfy3NQkvDej35W3VqDa9yr",
-        "symbol": "RAPEKING",
-        "reasons": [
-          "universe: liquidity $17,045 < $25,000"
-        ],
-        "ts": "2026-11-27T08:19:39-08:00"
-      },
-      {
-        "agent": "launch_radar",
-        "mint": "HSDZEs6e6f1p9mYUF1uC7bBeykNE57JbrPLdE9dgpump",
-        "symbol": "RAPEKING",
+        "mint": "hcKkRpQz9HeKHwmRNo11D2hjEMipSzjWaHCFYNUpump",
+        "symbol": "ISHI",
         "reasons": [
           "universe: liquidity $0 < $25,000"
         ],
-        "ts": "2026-11-27T08:19:39-08:00"
+        "ts": "2026-11-27T08:30:27-08:00"
+      },
+      {
+        "agent": "launch_radar",
+        "mint": "DzNk9u8Jzn8FJtv9ghceFN8VJtcSYwxG6RJA94sbKGjC",
+        "symbol": "DLOH",
+        "reasons": [
+          "universe: liquidity $11,487 < $25,000"
+        ],
+        "ts": "2026-11-27T08:30:27-08:00"
       }
     ],
     "lastScan": {
@@ -20982,90 +21145,394 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
       "name": "Launch Radar",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "103 pools seen, 55 fresh mints, 6 passed universe, 49 filtered",
+      "summary": "118 pools seen, 68 fresh mints, 14 passed universe, 54 filtered",
       "role": "SCANNER \u2014 fresh pairs \u22646h (pump.fun / PumpSwap / Raydium / Meteora), liq \u2265$25k, 5m vol \u2265$8k",
-      "updated": "2026-11-27T08:28:33-08:00"
+      "updated": "2026-11-27T08:31:41-08:00"
     },
     {
       "id": "whale_match",
       "name": "Whale Match",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "40 smart + 83 KOL wallets (kolscan); 600 new txs parsed (0 failed); 0 smart-money flags, 0 KOL flags",
+      "summary": "40 smart + 83 KOL wallets (kolscan); 67 new txs parsed (0 failed); 0 smart-money flags, 0 KOL flags",
       "role": "SCANNER \u2014 3+ of 40 smart wallets in 10m; KOL wallets that bought",
-      "updated": "2026-11-27T08:28:33-08:00"
+      "updated": "2026-11-27T08:31:41-08:00"
     },
     {
       "id": "sentiment",
       "name": "Sentiment",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "6 checked: 0 volume spikes, 5 with >70% buys",
+      "summary": "14 checked: 4 volume spikes, 7 with >70% buys",
       "role": "SCANNER \u2014 volume spike >5x 1h avg, buy/sell ratio >70%",
-      "updated": "2026-11-27T08:28:33-08:00"
+      "updated": "2026-11-27T08:31:41-08:00"
     },
     {
       "id": "holder_map",
       "name": "Holder Map",
       "spec_role": "SCANNER",
       "state": "ok",
-      "summary": "6 checked, 6 with \u2265300 holders, 2 holder-growth flags",
+      "summary": "14 checked, 12 with \u2265300 holders, 3 holder-growth flags",
       "role": "SCANNER \u2014 \u2265300 holders, holder growth; dev % and top-10 % for Rug Check",
-      "updated": "2026-11-27T08:28:33-08:00"
+      "updated": "2026-11-27T08:31:41-08:00"
     },
     {
       "id": "lp_auditor",
       "name": "LP Auditor",
       "spec_role": "RUG CHECK",
       "state": "ok",
-      "summary": "6 audited, 3 passed mint/freeze/LP",
+      "summary": "12 audited, 5 passed mint/freeze/LP",
       "role": "RUG CHECK \u2014 no open mint, no freeze authority, LP burned or locked 30d+; watches for LP pulls",
-      "updated": "2026-11-27T08:28:33-08:00"
+      "updated": "2026-11-27T08:31:41-08:00"
     },
     {
       "id": "analyst",
       "name": "Analyst",
       "spec_role": "RUG CHECK",
       "state": "ok",
-      "summary": "6 reviewed, 3 rug PASS, 1 eligible to enter",
+      "summary": "12 reviewed, 4 rug PASS, 1 eligible to enter",
       "role": "RUG CHECK \u2014 dev <5%, top-10 <35%, no bundle, LP ok, Jupiter sell sim; \u22652 signals; no chasing; momentum (buys>sells, 5m vol \u22651.2x avg, no +25%/5m or +150%/1h top); candle run-up \u2264 +150%/60m; pool \u2265 0m old",
-      "updated": "2026-11-27T08:28:33-08:00"
+      "updated": "2026-11-27T08:31:41-08:00"
     },
     {
       "id": "risk",
       "name": "Risk Sizer",
       "spec_role": "SIZER",
       "state": "ok",
-      "summary": "equity 0.3801 SOL, peak 0.3851, drawdown -1.3%; 2 open / 1 free slot(s); loss streak 2 \u2192 size halved",
+      "summary": "equity 0.3755 SOL, peak 0.3851, drawdown -2.5%; 2 open / 1 free slot(s); loss streak 2 \u2192 size halved",
       "role": "SIZER \u2014 15%\u201320% of equity by signal strength, max 3 open, \u221250% after 2 losses, \u221230% drawdown pause",
-      "updated": "2026-11-27T08:29:57-08:00"
+      "updated": "2026-11-27T08:31:41-08:00"
     },
     {
       "id": "executor",
       "name": "Executor",
       "spec_role": "EXECUTOR",
-      "state": "orders",
-      "summary": "1 entry order(s) prepared: Fireball 0.0287 SOL",
+      "state": "idle",
+      "summary": "no entries this run",
       "role": "EXECUTOR \u2014 2.5% max slippage, entries split in 2 parts",
-      "updated": "2026-11-27T08:28:33-08:00"
+      "updated": "2026-11-27T08:31:41-08:00"
     },
     {
       "id": "profit_taker",
       "name": "Profit Taker / Stop Guard",
       "spec_role": "EXECUTOR",
       "state": "watching",
-      "summary": "watching 1 open position(s), no exit triggered",
+      "summary": "watching 2 open position(s), no exit triggered",
       "role": "EXECUTOR exits \u2014 -20% stop; sell 75% at +30%, rest on 10% trail never below breakeven; 30m stall stop; 120.0m max hold; dev-sell / LP-pull exit",
-      "updated": "2026-11-27T08:28:49-08:00"
+      "updated": "2026-11-27T08:31:16-08:00"
     },
     {
       "id": "journal",
       "name": "Journal",
       "spec_role": "LOGGER + EQUITY",
       "state": "ok",
-      "summary": "1720 night-log lines since 18:00 PT; recorded buy B9wbjD\u2026; equity 0.3801 SOL",
+      "summary": "1750 night-log lines since 18:00 PT; equity point 0.3755 SOL logged",
       "role": "LOGGER + EQUITY \u2014 night log + equity curve",
-      "updated": "2026-11-27T08:29:57-08:00"
+      "updated": "2026-11-27T08:31:41-08:00"
+    }
+  ],
+  "control": {
+    "state": "ACTIVE",
+    "stop": null,
+    "limits": {
+      "activated_at": "2026-11-27T08:30:00-08:00",
+      "budget_cap_sol": 0.385,
+      "max_per_token_sol": 0.077,
+      "max_total_exposure_sol": 0.19,
+      "daily_loss_limit_pct": 15,
+      "total_drawdown_limit_pct": 30,
+      "max_slippage_pct": 2.5,
+      "max_price_impact_pct": 2.0,
+      "max_fee_pct_roundtrip": 5,
+      "min_sol_reserve_for_fees": 0.01,
+      "max_hold_min": 120,
+      "min_order_sol": 0.02,
+      "phantom_fee_pct": 0.85,
+      "priority_fee_sol": 0.0002,
+      "max_top10_pct": 35,
+      "one_pending_order_per_mint": true,
+      "unreconciled_after_min": 15,
+      "stale_data_max_min": 10,
+      "data_fail_streak_stop": 3,
+      "data_auto_resume_healthy_runs": 3,
+      "unexplained_sol_drop_stop": 0.02,
+      "no_leverage": true,
+      "no_refills": true,
+      "no_doubling_down": true
+    },
+    "usage": {
+      "budget_cap_sol": 0.385,
+      "equity_sol": 0.375512,
+      "tradable_equity_sol": 0.375512,
+      "above_budget_untraded_sol": 0.0,
+      "open_exposure_sol": 0.062509,
+      "pending_entry_sol": 0,
+      "pending_entries": 0,
+      "exposure_sol": 0.062509,
+      "max_total_exposure_sol": 0.19,
+      "exposure_room_sol": 0.127491,
+      "exposure_pct_of_cap": 32.9,
+      "day_start_equity_sol": 0.385144,
+      "daily_pnl_pct": -2.46,
+      "daily_loss_limit_pct": 15,
+      "peak_equity_sol": 0.385,
+      "drawdown_pct": -2.46,
+      "total_drawdown_limit_pct": 30,
+      "sol": 0.322636,
+      "spendable_sol": 0.312636
+    },
+    "safety_checks": [
+      "Exact mint + pool re-verified on DexScreener (pairs_by_address) right before the order",
+      "Mint authority must be null (getAccountInfo jsonParsed)",
+      "Freeze authority must be null",
+      "Token-2022: no transfer fee, transfer hook, permanent delegate, non-transferable, frozen default state, pausable or confidential extensions",
+      "Top-10 holders \u2264 35% of supply on-chain (getTokenLargestAccounts; pool / bonding-curve vaults excluded)",
+      "RugCheck: dev < 5%, top-10 < 35%, no bundle / insider network \u2265 10%, LP \u2265 95% burned/locked 30d+",
+      "Honeypot: a Jupiter sell route must exist (impact \u2264 5%, returns \u2265 80%)",
+      "Live Jupiter buy quote: price impact \u2264 2%, round-trip fees + impact \u2264 5%",
+      "Chase guard: fresh 5m \u2264 +25%, fresh price \u2264 +15% vs scan; candle run-up \u2264 +150% in 60m",
+      "Caps: \u2264 0.077 SOL per token, \u2264 0.19 SOL total exposure incl. pending orders, 0.01 SOL fee reserve, budget 0.385 SOL",
+      "One pending order per mint (duplicate-order lock); orders not recorded within 15 min are reconciled against the wallet"
+    ],
+    "monitoring": {
+      "cadence": "every 5 min (routine memecoin-desk-check: monitor, then scan)",
+      "cadence_min": 5,
+      "last_scan": "2026-11-27T08:31:18-08:00",
+      "last_monitor": "2026-11-27T08:31:16-08:00",
+      "last_check": "2026-11-27T08:31:18-08:00",
+      "healthy_streak": 5
+    },
+    "health": {
+      "dexscreener": {
+        "fails": 0,
+        "last_ok": "2026-11-27T08:31:18-08:00"
+      },
+      "rpc": {
+        "fails": 0,
+        "last_ok": "2026-11-27T08:31:18-08:00"
+      }
+    },
+    "pending_locks": [],
+    "paper_sim": null,
+    "execution": "orders are printed by desk.py and placed by Bob through Phantom on each 5-minute routine wake; no independent restricted signer yet",
+    "team": [
+      {
+        "role": "SCANNER",
+        "agents": [
+          "Launch Radar",
+          "Whale Match",
+          "Sentiment",
+          "Holder Map"
+        ]
+      },
+      {
+        "role": "RUG CHECK",
+        "agents": [
+          "LP Auditor",
+          "Analyst"
+        ]
+      },
+      {
+        "role": "SIZER",
+        "agents": [
+          "Risk Sizer"
+        ]
+      },
+      {
+        "role": "EXECUTOR",
+        "agents": [
+          "Executor",
+          "Profit Taker / Stop Guard"
+        ]
+      },
+      {
+        "role": "LOGGER / EQUITY",
+        "agents": [
+          "Journal"
+        ]
+      }
+    ],
+    "cap_blocked_this_scan": []
+  },
+  "journalRecent": [
+    {
+      "ts": "2026-11-24T12:10-08:00",
+      "type": "actual",
+      "event": "BUY",
+      "token": "CHRISTMAS",
+      "mint": "6jmhyHEy1rDyYHyRkr1rbVVQnckKpMYWh3zoX7zLpump",
+      "sol": 0.0436,
+      "tx": "5HGQRr35auW9i17yZtjiLCtFaJ48H227mBx5nHPazEHkbC6uGYEiJ6aG4DyVQaLf5nJ5hkp2ET8oFVctza6sitx3",
+      "solscan": "https://solscan.io/tx/5HGQRr35auW9i17yZtjiLCtFaJ48H227mBx5nHPazEHkbC6uGYEiJ6aG4DyVQaLf5nJ5hkp2ET8oFVctza6sitx3",
+      "backfilled": true
+    },
+    {
+      "ts": "2026-11-24T13:06-08:00",
+      "type": "actual",
+      "event": "BUY",
+      "token": "Holders",
+      "mint": "55RwtHpoNB81SgfiNvogeZTMfik2SfMGa5FaxKcXpump",
+      "sol": 0.0486,
+      "backfilled": true
+    },
+    {
+      "ts": "2026-11-24T13:06-08:00",
+      "type": "actual",
+      "event": "SELL",
+      "token": "Holders",
+      "mint": "55RwtHpoNB81SgfiNvogeZTMfik2SfMGa5FaxKcXpump",
+      "sol": 0.029793566,
+      "tx": "6FRBwr3H3Hm1fzWacgEimZVe4ogRiRY2532BRyrsFdGSzkxyTnDU2FbX7FhMJjbNehUWWSFNdaa17GwpEGo9AM2",
+      "solscan": "https://solscan.io/tx/6FRBwr3H3Hm1fzWacgEimZVe4ogRiRY2532BRyrsFdGSzkxyTnDU2FbX7FhMJjbNehUWWSFNdaa17GwpEGo9AM2",
+      "backfilled": true,
+      "reason": "stop-loss"
+    },
+    {
+      "ts": "2026-11-24T13:13-08:00",
+      "type": "actual",
+      "event": "BUY",
+      "token": "WASTED",
+      "mint": "GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
+      "sol": 0.0423,
+      "tx": "ho6xerJf3pkUAjx7PitzKLpiCETQsoZFYEkueDyGGmH6nRondqCoNzmXRUCW8DcNVR4VecQSgPLAJ5CKkSicXVQ",
+      "solscan": "https://solscan.io/tx/ho6xerJf3pkUAjx7PitzKLpiCETQsoZFYEkueDyGGmH6nRondqCoNzmXRUCW8DcNVR4VecQSgPLAJ5CKkSicXVQ",
+      "backfilled": true
+    },
+    {
+      "ts": "2026-11-24T16:38-08:00",
+      "type": "actual",
+      "event": "BUY",
+      "token": "Mogmas",
+      "mint": "Cocrz7BR2xE2sgKn3VbmaTXH6HTVgCiVFWTVWmyTpump",
+      "sol": 0.0379,
+      "backfilled": true
+    },
+    {
+      "ts": "2026-11-24T16:38-08:00",
+      "type": "actual",
+      "event": "SELL",
+      "token": "Mogmas",
+      "mint": "Cocrz7BR2xE2sgKn3VbmaTXH6HTVgCiVFWTVWmyTpump",
+      "sol": 0.021453418,
+      "tx": "3VWdXSqRWejsc1cCjTBL37ko76sqUDWrqWa9YBak1MNTdMkGWJwXWCvH3H4jbLHAhPDWAEowSk1zyeNgCG69v33b",
+      "solscan": "https://solscan.io/tx/3VWdXSqRWejsc1cCjTBL37ko76sqUDWrqWa9YBak1MNTdMkGWJwXWCvH3H4jbLHAhPDWAEowSk1zyeNgCG69v33b",
+      "backfilled": true,
+      "reason": "stop-loss"
+    },
+    {
+      "ts": "2026-11-24T16:41-08:00",
+      "type": "actual",
+      "event": "BUY",
+      "token": "ZOL",
+      "mint": "AQfw8J74V17erZsmMz4oK474eVLBaP44gD33vVbhtHo5",
+      "sol": 0.036,
+      "tx": "5HhQURnGaiNqndy1H2qh5wMRu3EiEovok2QykDns7FtTdU9QJwprWqa3N27mWsfy5R1sqCwV3BCgfJPSN84LYVJJ",
+      "solscan": "https://solscan.io/tx/5HhQURnGaiNqndy1H2qh5wMRu3EiEovok2QykDns7FtTdU9QJwprWqa3N27mWsfy5R1sqCwV3BCgfJPSN84LYVJJ",
+      "backfilled": true
+    },
+    {
+      "ts": "2026-11-24T18:14:54-08:00",
+      "type": "actual",
+      "event": "SELL",
+      "token": "CHRISTMAS",
+      "mint": "6jmhyHEy1rDyYHyRkr1rbVVQnckKpMYWh3zoX7zLpump",
+      "sol": 0.033103897,
+      "tx": "bLp98fAUTu7b8C1JokzTBoVyU3kqHJ2V8cRhN453uKPbg3iJr6g2iJTCkcnjE26e3A63Sc51PKCPxHwa2ZVNEBm",
+      "solscan": "https://solscan.io/tx/bLp98fAUTu7b8C1JokzTBoVyU3kqHJ2V8cRhN453uKPbg3iJr6g2iJTCkcnjE26e3A63Sc51PKCPxHwa2ZVNEBm",
+      "backfilled": true,
+      "pnl_sol": -0.010496,
+      "pnl_pct": -24.07,
+      "reason": "exit-hard-stop"
+    },
+    {
+      "ts": "2026-11-24T18:14:54-08:00",
+      "type": "actual",
+      "event": "SELL",
+      "token": "WASTED",
+      "mint": "GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump",
+      "sol": 0.042842606,
+      "tx": "3HLoZopqAJGBPus5cCAyghb9ycqYR9oxFHjnhPjEngENvABECYbRcL3QuAxfeU7hDE79gQreFtYyUnCkBWRD1zEM",
+      "solscan": "https://solscan.io/tx/3HLoZopqAJGBPus5cCAyghb9ycqYR9oxFHjnhPjEngENvABECYbRcL3QuAxfeU7hDE79gQreFtYyUnCkBWRD1zEM",
+      "backfilled": true,
+      "pnl_sol": 0.000543,
+      "pnl_pct": 1.28,
+      "reason": "exit-time-stop"
+    },
+    {
+      "ts": "2026-11-24T18:14:54-08:00",
+      "type": "actual",
+      "event": "SELL",
+      "token": "ZOL",
+      "mint": "AQfw8J74V17erZsmMz4oK474eVLBaP44gD33vVbhtHo5",
+      "sol": 0.027292199,
+      "tx": "5Qu9eJCVggx8hUGkBwdyDvuQMx9So9W5oAnfv59j6FyEF22Ldjk6UVguiPStsamfXTEgb2E7LrqPx6JymBpNw8sX",
+      "solscan": "https://solscan.io/tx/5Qu9eJCVggx8hUGkBwdyDvuQMx9So9W5oAnfv59j6FyEF22Ldjk6UVguiPStsamfXTEgb2E7LrqPx6JymBpNw8sX",
+      "backfilled": true,
+      "pnl_sol": -0.008708,
+      "pnl_pct": -24.19,
+      "reason": "exit-hard-stop"
+    },
+    {
+      "ts": "2026-11-25T10:02:14-08:00",
+      "type": "actual",
+      "event": "BUY",
+      "token": "MIM",
+      "mint": "BvnzzK6CBRkUz1EwhxVU1nSNYyNRmVovcz2jRg9Rpump",
+      "sol": 0.087834732,
+      "tx": "4QKZqtwopabfT3aacg8CrA1Bh68Cq3vDadMDW6tscYpycir1DdCMTJ5CHvc7nz5itmnW1TpT1Se5ewHr6ckgDr8d",
+      "solscan": "https://solscan.io/tx/4QKZqtwopabfT3aacg8CrA1Bh68Cq3vDadMDW6tscYpycir1DdCMTJ5CHvc7nz5itmnW1TpT1Se5ewHr6ckgDr8d",
+      "backfilled": true
+    },
+    {
+      "ts": "2026-11-25T10:10:31-08:00",
+      "type": "actual",
+      "event": "SELL",
+      "token": "MIM",
+      "mint": "BvnzzK6CBRkUz1EwhxVU1nSNYyNRmVovcz2jRg9Rpump",
+      "sol": 0.046687349,
+      "tx": "5yv4EP5FxK71q4RhLaF9tjbq6QaYmZPv2yh9qMEZnzHQPr2Reu35YbECbhWJymXZ3JCcLEAJ7ufqGda3opSBtzPD",
+      "solscan": "https://solscan.io/tx/5yv4EP5FxK71q4RhLaF9tjbq6QaYmZPv2yh9qMEZnzHQPr2Reu35YbECbhWJymXZ3JCcLEAJ7ufqGda3opSBtzPD",
+      "backfilled": true,
+      "pnl_sol": -0.041147,
+      "pnl_pct": -46.85,
+      "reason": "exit-hard-stop"
+    },
+    {
+      "ts": "2026-11-27T08:24:28-08:00",
+      "type": "actual",
+      "event": "BUY",
+      "token": "KITT",
+      "mint": "F5LxbqJxAMrvfxLbqPckErmqNyiPzDJMUXnX8vrhpump",
+      "sol": 0.030693557,
+      "tx": "3WLyXsbZdD5XbU7W687pvuVArpgrzeQ95yuX7H8PWuXBwKJHCWSv2CTyuPsKDbbKwpDdf6y2ERBaiqfeRLiTNmRe",
+      "solscan": "https://solscan.io/tx/3WLyXsbZdD5XbU7W687pvuVArpgrzeQ95yuX7H8PWuXBwKJHCWSv2CTyuPsKDbbKwpDdf6y2ERBaiqfeRLiTNmRe",
+      "backfilled": true
+    },
+    {
+      "ts": "2026-11-27T08:29:57-08:00",
+      "type": "actual",
+      "event": "BUY",
+      "token": "Fireball",
+      "mint": "B9wbjDJ4FbHMsZmoXAkJSTAwuePaJUKbySvnK5zApump",
+      "sol": 0.015908841,
+      "tokens": 1321.70372,
+      "tx": "5pevcfu2dmw3CAHT5m3dkoBPDbEMHvFMxaAvMA7GwsxeD3K8T8mPzqPbpbiPNtxco2dkQDAxDUouDpvGUY2jPWY6",
+      "solscan": "https://solscan.io/tx/5pevcfu2dmw3CAHT5m3dkoBPDbEMHvFMxaAvMA7GwsxeD3K8T8mPzqPbpbiPNtxco2dkQDAxDUouDpvGUY2jPWY6",
+      "part": 1,
+      "price_usd": 0.0008657938354974139
+    },
+    {
+      "ts": "2026-11-27T08:29:57-08:00",
+      "type": "actual",
+      "event": "BUY",
+      "token": "Fireball",
+      "mint": "B9wbjDJ4FbHMsZmoXAkJSTAwuePaJUKbySvnK5zApump",
+      "sol": 0.0159062,
+      "tokens": 1298.718474,
+      "tx": "2hEyzXNbqNXuqVB1TcgXMYZ5mBTMNDySjxejeMEnGH5TiBqTSb3RUrgN54FxJypiMnDyUqJgZ1GheQjtAdVo6hHS",
+      "solscan": "https://solscan.io/tx/2hEyzXNbqNXuqVB1TcgXMYZ5mBTMNDySjxejeMEnGH5TiBqTSb3RUrgN54FxJypiMnDyUqJgZ1GheQjtAdVo6hHS",
+      "part": 2,
+      "price_usd": 0.0008809707329996754
     }
   ],
   "rules": {
@@ -21369,7 +21836,52 @@ footer{margin-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap
     if (D.solscanWallet) $("solscanLink").href = D.solscanWallet;
   }
 
-  function renderAll(){ renderHero(); renderTicker(); renderStats(); renderChart(); renderFunnel(); renderFeed(); renderPositions(); renderHistory(); renderAgents(); renderStatus(); }
+  var TEAM = [["SCANNER",["Launch Radar","Whale Match","Sentiment","Holder Map"]],["RUG CHECK",["LP Auditor","Analyst"]],["SIZER",["Risk Sizer"]],["EXECUTOR",["Executor","Profit Taker / Stop Guard"]],["LOGGER / EQUITY",["Journal"]]];
+  function renderTeam(){
+    var t = ((D.control || {}).team || []).map(function(r){ return [r.role, r.agents]; });
+    if (!t.length) t = TEAM;
+    $("team").innerHTML = t.map(function(r){ return '<div class="r"><div class="t">' + esc(r[0]) + '</div><div class="a">' + r[1].map(esc).join("<br>") + "</div></div>"; }).join("");
+  }
+  function limRow(name, val, frac, warnAt){
+    var f = frac == null ? null : Math.max(0, Math.min(1, frac));
+    return '<div class="lim"><span class="n">' + name + '</span><span class="v">' + val + "</span>" +
+      (f == null ? "" : '<div class="bar"><i class="' + (f >= (warnAt || .8) ? "warn" : "") + '" style="width:' + (f*100).toFixed(1) + '%"></i></div>') + "</div>";
+  }
+  function renderControl(){
+    var C = D.control || {}, L = C.limits || {}, U = C.usage || {}, st = C.stop, on = C.state !== "STOPPED";
+    if (!C.limits) { $("ctlPanel").style.display = "none"; return; }
+    $("ctlPanel").style.display = "";
+    $("ctlPill").innerHTML = '<i class="dot ' + (on ? "" : "bad") + '"></i>' + (on ? "ACTIVE · ENTRIES ON" : "STOPPED · ENTRIES OFF");
+    $("ctlState").className = "ctl-state " + (on ? "on" : "off");
+    $("ctlState").innerHTML = '<div style="font:700 10px var(--mono);letter-spacing:.2em;color:var(--mute)">NEW ENTRIES</div><div class="big2">' + (on ? "ACTIVE" : "STOPPED") + '</div><div class="why">' +
+      (on ? "All limits inside their caps. Exits and stops always run, even when stopped." :
+        esc(st && st.reason) + "<br><span style='color:var(--mute)'>" + esc(st && st.category) + " · since " + esc(pt(st && st.ts)) + " · " + esc(st && st.resume_rule) + "</span>") + "</div>";
+    var M = C.monitoring || {}, last = parseTs(M.last_check), age = last ? Date.now() - last : null;
+    var hs = C.health || {};
+    $("ctlMon").innerHTML = "MONITORING &nbsp;<b style='color:var(--text)'>every " + (M.cadence_min || 5) + " min</b><br>last check &nbsp;<b style='color:" + (age != null && age < 12*60e3 ? "var(--lime)" : "var(--amber)") + "'>" + (age == null ? "—" : ago(age)) + "</b>" +
+      Object.keys(hs).map(function(k){ var h = hs[k] || {}; return "<br>" + esc(k) + " &nbsp;" + (h.fails ? "<b style='color:var(--red)'>" + h.fails + " fail(s)</b>" : "<b style='color:var(--lime)'>OK</b>"); }).join("") +
+      "<br><span style='color:var(--mute)'>" + esc(C.execution || "") + "</span>";
+    var dd = num(U.drawdown_pct), dl = num(U.daily_pnl_pct);
+    $("ctlLimits").innerHTML =
+      limRow("BUDGET (HARD CAP)", fx(L.budget_cap_sol,3) + " SOL", num(U.tradable_equity_sol) != null ? U.tradable_equity_sol / L.budget_cap_sol : null, 2) +
+      limRow("TOTAL EXPOSURE incl. pending", fx(U.exposure_sol,4) + " / " + fx(L.max_total_exposure_sol,2) + " SOL", num(U.exposure_sol) != null ? U.exposure_sol / L.max_total_exposure_sol : null) +
+      limRow("MAX PER COIN", fx(L.max_per_token_sol,3) + " SOL", null) +
+      limRow("DAILY P&L vs −" + L.daily_loss_limit_pct + "% LIMIT", '<span class="' + cls(dl) + '">' + sgn(dl,2,"%") + "</span>", dl != null && dl < 0 ? -dl / L.daily_loss_limit_pct : 0) +
+      limRow("DRAWDOWN vs −" + L.total_drawdown_limit_pct + "% LIMIT", '<span class="' + cls(dd) + '">' + sgn(dd,2,"%") + "</span>", dd != null && dd < 0 ? -dd / L.total_drawdown_limit_pct : 0) +
+      limRow("SLIPPAGE / IMPACT / ROUND-TRIP COST", "≤ " + L.max_slippage_pct + "% / " + L.max_price_impact_pct + "% / " + L.max_fee_pct_roundtrip + "%", null) +
+      limRow("FEE RESERVE · MAX HOLD", fx(L.min_sol_reserve_for_fees,2) + " SOL · " + L.max_hold_min + " min", null) +
+      limRow("PENDING ORDERS (1 per coin)", String((C.pending_locks || []).length), null) +
+      "<div style='font:500 10.5px var(--mono);color:var(--mute);margin-top:6px'>no leverage · no refills · no doubling down · STOP never auto-resumes after a loss or security stop</div>";
+    $("ctlChecks").innerHTML = (C.safety_checks || []).map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("");
+    var P = C.paper_sim;
+    $("ctlSim").innerHTML = P ? '<b class="tag">SIMULATED</b> &nbsp;paper-trade replay · last ' + esc(P.hours) + "h · " + esc(pt(P.ts)) +
+      "<br>trades <b style='color:var(--text)'>" + esc(P.n) + "</b> · win rate <b style='color:var(--text)'>" + (P.win_rate_pct == null ? "—" : P.win_rate_pct + "%") + "</b> · avg " + sgn(P.avg_pct,1,"%") + " · median " + sgn(P.median_pct,1,"%") +
+      "<br>max drawdown " + sgn(P.max_drawdown_pct,1,"%") + " · blocked by caps " + esc(P.blocked_by_caps) + " · failed swaps " + esc(P.failed_swaps) +
+      "<br><span style='color:var(--mute)'>Not real trades. Fees, slippage, impact, 60–300 s delay and 5% failed swaps included.</span>"
+      : '<b class="tag">SIMULATED</b> &nbsp;no paper-sim run yet';
+  }
+
+  function renderAll(){ renderControl(); renderTeam(); renderHero(); renderTicker(); renderStats(); renderChart(); renderFunnel(); renderFeed(); renderPositions(); renderHistory(); renderAgents(); renderStatus(); }
 
   function seg(id, key, attr, after){ $(id).addEventListener("click", function(e){ var b = e.target.closest("button"); if (!b) return;
       Array.prototype.forEach.call(this.querySelectorAll("button"), function(x){ x.classList.remove("on"); }); b.classList.add("on");
